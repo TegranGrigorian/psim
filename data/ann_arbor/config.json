@@ -12,7 +12,8 @@
     "redesign_v1": ["raw/gtfs_redesign_v1/theride", "raw/gtfs/umich"]
   },
   "osm": "raw/osm.pbf",
-  "service_date": "2026-03-10",
+  "service_date": "2026-11-10",
+  "weekend_service_date": "2026-11-14",
   "departure_window_minutes": 30,
   "max_walk_minutes": 20,
   "max_trip_minutes": 120,
