@@ -1,0 +1,4 @@
+# regenerable outputs and large raw downloads
+data/*/generated/
+data/*/results/
+data/*/raw/
