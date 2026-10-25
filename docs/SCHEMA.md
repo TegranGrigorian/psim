@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.1 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.2 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -12,7 +12,7 @@ If a column changes here, all three projects must change. Draft v0.1 — expect 
 - **Times:** `HH:MM` 24-hour local time in the city's timezone. Day of week is `mon`..`sun`.
 - **Missing values:** empty field in CSV, `null` in JSON. Never `NA`, `-1`, or `0` as a sentinel.
 - **Enums:** lowercase snake_case. Allowed values are listed below; unknown values are an error, not a silent pass-through.
-- **Seeds:** every generated file is a function of `(inputs, seed)`. The seed is recorded in `manifest.json`. The project's `base_seed` is **42**; replicate `i` uses seed `42 + i` (42..141 for 100 replicates). Seeds are public and must not be personal data.
+- **Seeds:** every generated file is a function of `(inputs, seed)`. Replicate `i` uses seed `base_seed + i`. The base seed is resolved in this order: the `--base-seed` CLI flag, then `base_seed` in `config.json` (may be `null`), then a value derived from the clock (unix seconds). Whichever is used is **always** written to `manifest.json` (`base_seed` and `seed`), so any run can be reproduced exactly. Results reported in the paper must use one fixed, recorded base seed. Seeds are public and must not be personal data.
 
 ## Folder layout
 
@@ -49,7 +49,8 @@ data/<city_slug>/
   "bbox": [-83.85, 42.20, -83.62, 42.34],
   "population_size": 1000,
   "n_replicates": 100,
-  "base_seed": 42,
+  "represented_population": 123851,
+  "base_seed": null,
   "gtfs": {
     "baseline": ["raw/gtfs/theride", "raw/gtfs/umich"],
     "redesign_v1": ["raw/gtfs_redesign_v1/theride", "raw/gtfs/umich"]
@@ -70,7 +71,7 @@ data/<city_slug>/
 }
 ```
 
-`group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday covered by every GTFS feed used. Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
+`represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday covered by every GTFS feed used. Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
 
 ---
 
@@ -100,7 +101,7 @@ One row per housing unit *or* per small aggregated location (e.g. a parcel, buil
 | `name` | string | no | for human debugging |
 | `sector` | enum | yes | `university`, `healthcare`, `retail_food`, `government`, `education_k12`, `industry_tech`, `other_service` |
 | `jobs` | int | yes | capacity weight (approx. number of jobs at this location), ≥ 1 |
-| `shift_pattern` | enum | yes | `standard_day`, `early`, `evening`, `night`, `rotating` |
+| `shift_pattern` | enum | yes | v1 uses only `standard_day` (09:00–17:00) and `night` (17:00–09:00 next day). `early`, `evening`, `rotating` are reserved for later versions |
 | `is_university` | bool | yes | `true` if employer is the city's primary university |
 
 ### 2.3 `campus_locations.csv`
@@ -127,6 +128,7 @@ Study destinations for students. These are *also* valid work locations for unive
   "run_id": "baseline_s0042",
   "city_slug": "ann_arbor",
   "scenario": "baseline",
+  "base_seed": 42,
   "seed": 42,
   "replicate": 0,
   "n_personas": 1000,
@@ -136,7 +138,7 @@ Study destinations for students. These are *also* valid work locations for unive
 }
 ```
 
-Replicate seeds are `base_seed + replicate`. Each replicate is its own `run_id`.
+`seed` is `base_seed + replicate`. Both are recorded because `base_seed` may have come from the clock. Each replicate is its own `run_id`.
 
 ### 3.2 `personas.csv`
 
@@ -149,18 +151,22 @@ One row per simulated person.
 | `tenure` | enum | copied from home: `own`, `rent`, `dorm`, `other_group` |
 | `age_band` | enum | `18_24`, `25_34`, `35_49`, `50_64`, `65_plus` |
 | `income_band` | enum | `low`, `mid`, `high` |
-| `has_car` | bool | affects whether transit is the only option; recorded but not used by routing (see PLAN.md, limitations) |
+| `has_car` | bool | drawn from income band and housing type (dorm residents rarely have cars). Not used by routing: all personas are routed, and the analysis reports both everyone and the no-car subset (see PLAN.md) |
+| `weight` | float | real people this persona represents: `represented_population / n_personas`. Used to scale results, not by routing |
 | `neighborhood` | string | copied from home |
 | `home_id` | string | FK → `housing.csv` |
 | `home_lat`, `home_lon` | float | denormalized for convenience |
 | `anchor_id` | string | FK → `workplaces.csv` or `campus_locations.csv`; empty for `retired` |
 | `anchor_type` | enum | `workplace`, `campus`, `none` |
 | `anchor_lat`, `anchor_lon` | float | denormalized |
-| `shift_pattern` | enum | `standard_day`, `early`, `evening`, `night`, `rotating`, `student`, `none` |
+| `shift_pattern` | enum | v1: `standard_day`, `night`, `student`, `none` (`early`, `evening`, `rotating` are reserved) |
 
 **Group assignment rules** (documented here so the analysis is reproducible):
 - Groups are mutually exclusive for the primary `group` column. Cross-cutting attributes (`tenure`, `age_band`, `income_band`, `shift_pattern`) allow other comparisons (renters vs. homeowners, etc.).
-- `shift_worker` means the anchor workplace has a non-`standard_day` `shift_pattern`.
+- `shift_worker` means the anchor workplace has a non-`standard_day` `shift_pattern` (in v1, `night`).
+- **Group draw:** each persona's group is drawn from `group_shares`. The group sets the anchor type (students: campus location; everyone else: a workplace) and which homes are allowed (undergraduates: dorm or rental; graduate students: rental; others: any non-dorm home). Homes are drawn weighted by `units`; anchors weighted by `jobs` / `capacity_weight`. `university_staff` draw only from `is_university` workplaces; `shift_worker` only from non-`standard_day` workplaces; `resident_worker` from non-university `standard_day` workplaces.
+- **Age:** undergraduate `18_24`; graduate student `18_24` or `25_34` (22–34); retired `65_plus`; everyone else spread over `25_34`, `35_49`, `50_64`.
+- **Income:** `income_band` comes from the home's `median_income_band` plus random noise (a high-income tract still holds some low-income people). Housing determines income, not the reverse.
 - `university_staff` means the anchor workplace has `is_university = true` and is not a student role (this is the group that complicates the resident/student binary).
 
 ### 3.3 `trips.csv`
@@ -179,7 +185,7 @@ One row per trip a persona wants to make in a week. This is the input to the rou
 | `dest_id` | string | FK → housing / workplace / campus / `poi_*` id |
 | `required` | bool | `true` for work/class (a failure counts as a missed obligation) |
 
-Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
+v1 departure times: `standard_day` workers leave to arrive by 09:00 and return after 17:00; `night` workers leave to arrive by 17:00 and return after 09:00 the next morning; students depart for class on a weekday schedule. Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
 
 Discretionary destinations (`shopping`, `medical`, `social`) come from a `pois.csv` (optional v0.2: `poi_id, lat, lon, category, weight`). The v0.1 pipeline may generate only `work`, `class`, and `return_home` trips.
 
@@ -269,7 +275,7 @@ Pairwise differences between scenarios (e.g. `baseline` vs `redesign_v1`) or bet
 
 ## 7. Open questions
 
-- Source for housing locations: Washtenaw County parcels vs. OSM buildings vs. Census block centroids with unit counts. Decision depends on what's downloadable and how clean it is.
+- Source for housing locations: Washtenaw County parcels vs. OSM buildings vs. Census block centroids with unit counts. Decision depends on what's downloadable and how clean it is. Public sources only (no scraping of listing sites, which prohibit it in their terms). Candidates: OSM extract (also needed for routing), Census ACS tract tables, Census LEHD (LODES) for workplace counts, Washtenaw County open parcel data, U-M published enrollment and housing figures.
 - Whether `u-m` GTFS exists publicly; if not, build one from published schedules (adds work to `psim-engine`, not to the schema).
 - Whether `pois.csv` is in v0.1 or deferred.
 - Whether results should record `routing_percentile` per trip or just once per run.
