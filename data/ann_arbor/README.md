@@ -10,3 +10,6 @@ and the generator. They are not research data.
 
 Replace with real data (Census ACS/PUMS, county parcels, U-M enrollment and housing
 figures, employer counts) before running anything that is reported as a result.
+
+`pois.csv` is also sample data: approximate shopping and medical areas, made-up weights.
+Replace with OSM amenities (supermarkets, malls, hospitals, clinics) for real runs.
