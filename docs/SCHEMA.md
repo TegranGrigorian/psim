@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.3 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.4 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -209,25 +209,31 @@ Discretionary trips (v0.3): **every** persona, including `retired`, makes 1–2 
 
 ### 4.1 `trip_results.parquet`
 
-One row per trip per run. Parquet, snappy compression.
+One row per trip per run. Parquet, snappy compression. Written by `psim-engine run`.
 
 | column | type | notes |
 |---|---|---|
 | `run_id` | string | |
 | `trip_id` | string | FK → `trips.csv` |
 | `persona_id` | string | |
-| `completed` | bool | `false` if no transit itinerary found within `max_trip_minutes` and `max_walk_minutes` |
-| `total_minutes` | float | door-to-door; null if not completed |
-| `wait_minutes` | float | initial wait + transfer waits; null if not completed |
-| `in_vehicle_minutes` | float | null if not completed |
-| `walk_minutes` | float | access + egress + transfer walking; null if not completed |
-| `transfers` | int | null if not completed |
-| `routing_percentile` | int | which travel-time percentile over the departure window was used (default 50) |
-| `failure_reason` | enum | `none`, `no_service_at_time`, `no_route`, `walk_limit`, `time_limit`, `origin_unreachable`, `dest_unreachable` |
+| `completed` | bool | `false` if no itinerary within `max_trip_minutes` and `max_walk_minutes` |
+| `walk_only` | bool | `true` if walking the whole way was as fast as or faster than any transit option. Such trips count as completed. |
+| `total_minutes` | float | door-to-door, 50th percentile over the departure window (r5py travel time matrix); null if not completed. Present for **every** trip. |
+| `wait_minutes` | float | initial wait + transfer waits + boarding slack; null unless `breakdown_sampled` |
+| `in_vehicle_minutes` | float | null unless `breakdown_sampled` |
+| `walk_minutes` | float | access + egress + transfer walking; null unless `breakdown_sampled` |
+| `transfers` | int | null unless `breakdown_sampled` |
+| `breakdown_total_minutes` | float | the total of the option the breakdown describes (`wait + in_vehicle + walk` equals it); null unless `breakdown_sampled`. Close to `total_minutes` but not equal, see below. |
+| `breakdown_sampled` | bool | `true` if this trip's query was in the random sample routed in detail |
+| `routing_percentile` | int | percentile of `total_minutes` (50) |
+| `failure_reason` | enum | `none` or `no_route`. r5py does not say why no route was found, so every failure is `no_route`; the finer reasons (`no_service_at_time`, `walk_limit`, `time_limit`, `origin_unreachable`, `dest_unreachable`) are reserved. |
 
-`failure_reason` may be coarser than listed depending on what r5py exposes; unsupported reasons collapse to `no_route`. This is a known limitation to document.
+**How results are computed.** Queries are deduplicated first: all `mon`..`fri` trips route on `service_date`, `sat` trips on `weekend_service_date`, and identical (date, time, origin, destination) queries share one result.
 
----
+1. *Every query:* `total_minutes` and `completed` come from r5py's `TravelTimeMatrix` (fast), run twice, transit+walk and walk only, to set `walk_only`.
+2. *A seeded random sample of queries* (`--breakdown-sample`, default 100; seed = the run's seed): r5py's `DetailedItineraries` (about 1.3 s per query, so it cannot cover every trip). It returns many options, with repeats, including paths no traveler would take, so options are not averaged. Instead the single option whose total is closest to the matrix total supplies the components, and `breakdown_total_minutes` records its own total so the gap is visible.
+
+Analyses of wait, in-vehicle, walk and transfers use only `breakdown_sampled` rows and should report the sample size. Analyses of total time and failure use all rows.
 
 ## 5. Summary outputs (`psim-tools analyze` → `psim-site`)
 
