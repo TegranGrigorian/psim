@@ -1,0 +1,27 @@
+{
+  "theride_gtfs": {
+    "url": "https://www.theride.org/sites/default/files/google/google_transit.zip",
+    "file": "raw/gtfs/theride/google_transit.zip",
+    "bytes": 2517586,
+    "sha256": "e809b179484b404b0add5a4c30f5d8ee021e519e52fde60df26336a6f9540e8f",
+    "last_modified": "Fri, 11 Sep 2026 19:37:32 GMT",
+    "recorded_at": "2026-10-25T22:43:03+00:00"
+  },
+  "umich_gtfs": {
+    "url": "https://webapps.fo.umich.edu/transit_uploads/google_transit.zip",
+    "file": "raw/gtfs/umich/google_transit.zip",
+    "bytes": 1120764,
+    "sha256": "9f11db4eb4e3859c7e0dbbc8a175b18bcbec29497b13863edb045f94a6406df2",
+    "last_modified": "Tue, 01 Sep 2026 14:12:36 GMT",
+    "recorded_at": "2026-10-25T22:43:03+00:00"
+  },
+  "osm_michigan_geofabrik": {
+    "url": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf",
+    "file": "raw/michigan-latest.osm.pbf",
+    "bytes": 315859504,
+    "sha256": "f7fc404ca2171bf6c2d8f12f0ad9c59c3941fc6560036c1e0b6fe58f752f82a3",
+    "last_modified": "Sun, 25 Oct 2026 01:06:03 GMT",
+    "recorded_at": "2026-10-25T22:43:27+00:00"
+  },
+  "osm_clipped": null
+}
