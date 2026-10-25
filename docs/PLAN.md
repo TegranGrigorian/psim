@@ -1,9 +1,9 @@
 # PLAN.md — Who Is the Bus For? (psim)
 
 Class project: *Who Is the Bus For? Student and Resident Spatial Imaginaries in Ann Arbor's Transit System.*
-Author: Tegran Grigorian. Draft v0.2, 2026-10-25.
+Author: Tegran Grigorian. Draft v0.3, 2026-10-25.
 
-Project root: `~/Documents/Projects/psim/`, containing `psim-engine/` (Python), `psim-tools/` (Rust) and `psim-site/` (TypeScript). Build order: `psim-tools` first, then `psim-engine`, then `psim-site`. Global seed: 42.
+Project root: `~/Documents/Projects/psim/`, containing `psim-engine/` (Python), `psim-tools/` (Rust) and `psim-site/` (TypeScript). Build order: `psim-tools` first, then `psim-engine`, then `psim-site`. Seeds: each run records its base seed in `manifest.json`; replicate `i` uses `base_seed + i`. The base seed comes from `--base-seed`, then `config.json`, then the clock; the paper's results use one fixed recorded seed.
 
 ## 1. Goal
 
@@ -71,11 +71,11 @@ Large raw files (OSM extracts, GTFS zips, Census downloads) should be gitignored
 
 **Personas.** 1,000 per replicate. Each persona has a group (undergraduate, graduate, university staff, resident worker, shift worker, retired) plus cross-cutting attributes (tenure, age band, income band, neighborhood, shift pattern). Group shares and attribute distributions come from Census ACS (tract-level), PUMS, and university enrollment and housing figures. Undergrads and grads are placed using enrollment and housing data, not Census alone (Census undercounts group quarters).
 
-**Anchors and routines.** Each persona gets a home and an anchor (workplace or campus location), sampled in proportion to `jobs` / `capacity_weight`. A weekly routine is a set of trips: commute or class trips on weekdays, return trips, and (later) discretionary trips. Shift pattern sets departure times (night workers travel at night, which tests late service).
+**Anchors and routines.** Each persona gets a home and an anchor (workplace or campus location), sampled in proportion to `jobs` / `capacity_weight`. A weekly routine is a set of trips: commute or class trips on weekdays, return trips, and (later) discretionary trips. Two shifts in v1: `standard_day` (09:00–17:00) and `night` (17:00–09:00). Shift pattern sets departure times (night workers travel at night, which tests late service). Housing determines income (tract income band plus noise), and car ownership is drawn from income and housing type. All personas are routed regardless of `has_car`; the analysis reports everyone and the no-car subset, so results don't only describe captive riders. Each persona carries a `weight` (represented population / 1,000) for scaling to the real city.
 
 **Routing.** For each trip, r5py computes a door-to-door transit itinerary with a departure window (e.g. 30 minutes, median travel time) on the configured service date. Walk and total-time limits are in `config.json`. A trip that can't be completed is a *failure*, not dropped.
 
-**Replication.** 100 replicates, each with its own seed (`base_seed + i`, with `base_seed = 42`, so seeds 42–141) and its own 1,000 personas. This gives uncertainty intervals on every group metric. Routing cost can be reduced by deduplicating identical origin–destination–time queries within and across replicates.
+**Replication.** 100 replicates, each with its own seed (`base_seed + i`) and its own 1,000 personas. Randomness is real (each replicate is a different random population); the recorded seed only makes a run reproducible. This gives uncertainty intervals on every group metric. Routing cost can be reduced by deduplicating identical origin–destination–time queries within and across replicates.
 
 **Outcomes.** Total travel time, wait time, in-vehicle time, walk time, transfers, and failure rate, compared across groups (and by neighborhood, time of day, tenure).
 
@@ -139,6 +139,7 @@ Time estimates assume part-time work and are guesses; adjust to the class deadli
 - **Student housing data is thin.** Dorm and off-campus locations may need manual compilation from university sources.
 - **U-M GTFS availability.** If there is no public feed, building one from published schedules is real work and a source of error.
 - **GTFS is scheduled service, not real service.** r5py uses timetables; your ride-alongs measure reliability and crowding, which the simulation does not model. Report this honestly, and use the fieldwork to qualify the results.
+- **No traffic or congestion.** r5py routes buses from scheduled timetables and does not model traffic. A made-up congestion factor would be an unsupported assumption and would undermine the test, so it is out of scope. If added later, it must be a labeled sensitivity scenario (e.g. peak buses 20% slower), and ride-along observations of real delays should inform it.
 - **Transit-only.** Routing ignores cars, biking, and rideshare. `has_car` is recorded but unused in v1; note that "failure" means "no transit option," not "no way to travel."
 - **Synthetic does not mean real.** Results show what the system's *design* does to a plausible population, not what actual residents experience.
 - **Comparison-city fairness.** Different towns differ in size and density; compare patterns and gaps, not raw minutes.
