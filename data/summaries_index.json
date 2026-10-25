@@ -1,0 +1,1 @@
+{"schema_version":"0.1","fake":true,"cities":[{"slug":"ann_arbor","display_name":"Ann Arbor, MI","bbox":[-83.8,42.24,-83.66,42.33],"scenarios":["baseline","redesign_v1"]},{"slug":"madison","display_name":"Madison, WI","bbox":[-89.5,43.04,-89.3,43.12],"scenarios":["baseline"]}]}
