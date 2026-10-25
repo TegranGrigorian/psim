@@ -4,8 +4,9 @@
   "timezone": "America/Detroit",
   "bbox": [-83.85, 42.20, -83.62, 42.34],
   "population_size": 1000,
+  "represented_population": 123851,
   "n_replicates": 100,
-  "base_seed": 42,
+  "base_seed": null,
   "gtfs": {
     "baseline": ["raw/gtfs/theride", "raw/gtfs/umich"],
     "redesign_v1": ["raw/gtfs_redesign_v1/theride", "raw/gtfs/umich"]
