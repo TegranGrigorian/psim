@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.2 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.3 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -25,6 +25,7 @@ data/<city_slug>/
   housing.csv            # human/tool-prepared inputs
   workplaces.csv
   campus_locations.csv   # study locations (subset of destinations)
+  pois.csv               # discretionary destinations: shopping, medical
   generated/<run_id>/    # outputs of psim-tools generate
     manifest.json
     personas.csv
@@ -56,7 +57,8 @@ data/<city_slug>/
     "redesign_v1": ["raw/gtfs_redesign_v1/theride", "raw/gtfs/umich"]
   },
   "osm": "raw/osm.pbf",
-  "service_date": "2026-03-10",
+  "service_date": "2026-11-10",
+  "weekend_service_date": "2026-11-14",
   "departure_window_minutes": 30,
   "max_walk_minutes": 20,
   "max_trip_minutes": 120,
@@ -71,7 +73,7 @@ data/<city_slug>/
 }
 ```
 
-`represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday covered by every GTFS feed used. Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
+`represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday (Mon–Fri) covered by every GTFS feed used; the engine routes `mon`..`fri` trips on it. `weekend_service_date` must be a Saturday in the same period; the engine routes `sat` trips on it. `sun` trips are not generated in v1. `psim-tools` checks both weekdays (not GTFS coverage). Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
 
 ---
 
@@ -104,7 +106,19 @@ One row per housing unit *or* per small aggregated location (e.g. a parcel, buil
 | `shift_pattern` | enum | yes | v1 uses only `standard_day` (09:00–17:00) and `night` (17:00–09:00 next day). `early`, `evening`, `rotating` are reserved for later versions |
 | `is_university` | bool | yes | `true` if employer is the city's primary university |
 
-### 2.3 `campus_locations.csv`
+### 2.3 `pois.csv`
+
+Discretionary destinations. Required in v0.3 (every persona gets shopping trips; see 3.3).
+
+| column | type | required | notes |
+|---|---|---|---|
+| `poi_id` | string | yes | unique |
+| `lat`, `lon` | float | yes | |
+| `name` | string | no | |
+| `category` | enum | yes | `shopping`, `medical`, `social` (v1 generates only shopping and medical; at least one POI of each is required) |
+| `weight` | float | yes | relative attractiveness (size), > 0 |
+
+### 2.4 `campus_locations.csv`
 
 Study destinations for students. These are *also* valid work locations for university staff (reference them from `workplaces.csv` by `workplace_id` if so).
 
@@ -185,9 +199,9 @@ One row per trip a persona wants to make in a week. This is the input to the rou
 | `dest_id` | string | FK → housing / workplace / campus / `poi_*` id |
 | `required` | bool | `true` for work/class (a failure counts as a missed obligation) |
 
-`depart_time` is a *desired departure*, not an arrival target (the engine finds the itinerary). v1 routine, weekdays only (placeholder assumptions, refine with fieldwork): `standard_day` workers leave 07:30–08:30 and return 17:00–18:00, with one fixed time per persona per direction; `night` workers leave 16:00–17:00 and return 09:00–10:00 on the **next calendar day** (a Friday night shift returns on Saturday); students leave for class at a random time 07:30–14:00 each day and return 3–8 hours later (no later than 22:00). `retired` personas have no anchor and therefore **no trips in v1**, until discretionary trips (`pois.csv`) exist. Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
+`depart_time` is a *desired departure*, not an arrival target (the engine finds the itinerary). v1 routine, weekdays only (placeholder assumptions, refine with fieldwork): `standard_day` workers leave 07:30–08:30 and return 17:00–18:00, with one fixed time per persona per direction; `night` workers leave 16:00–17:00 and return 09:00–10:00 on the **next calendar day** (a Friday night shift returns on Saturday); students leave for class at a random time 07:30–14:00 each day and return 3–8 hours later (no later than 22:00). `retired` personas have no anchor and therefore make only discretionary trips. Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
 
-Discretionary destinations (`shopping`, `medical`, `social`) come from a `pois.csv` (optional v0.2: `poi_id, lat, lon, category, weight`). The v0.1 pipeline may generate only `work`, `class`, and `return_home` trips.
+Discretionary trips (v0.3): **every** persona, including `retired`, makes 1–2 `shopping` round trips a week (home → POI → home) and, with some probability (8% per week; 15% for `retired`), one `medical` round trip. Both are `required = false`. The POI is drawn weighted by `weight / (1 + distance_km)^2`, so people mostly go to nearby places and bigger places pull harder. Days are Mon–Fri plus Saturday, in windows chosen so a trip never collides with work or class: students shop and see clinics on Saturday only; day workers shop on weekday evenings (depart 19:30–21:00) or Saturday, and see clinics on Saturday morning; night workers use weekday late mornings (shopping 10:30–14:00, medical 10:30–12:00) or Saturday from 11:00; retired use weekday daytime or Saturday. Time at the destination is 20–90 min (shopping) or 60–180 min (medical). If a persona has a medical and a shopping trip on one day, shopping starts after they are home again. `social` is reserved. These numbers are placeholder assumptions.
 
 ---
 
@@ -276,6 +290,6 @@ Pairwise differences between scenarios (e.g. `baseline` vs `redesign_v1`) or bet
 ## 7. Open questions
 
 - Source for housing locations: Washtenaw County parcels vs. OSM buildings vs. Census block centroids with unit counts. Decision depends on what's downloadable and how clean it is. Public sources only (no scraping of listing sites, which prohibit it in their terms). Candidates: OSM extract (also needed for routing), Census ACS tract tables, Census LEHD (LODES) for workplace counts, Washtenaw County open parcel data, U-M published enrollment and housing figures.
-- Whether `u-m` GTFS exists publicly; if not, build one from published schedules (adds work to `psim-engine`, not to the schema).
-- Whether `pois.csv` is in v0.1 or deferred.
+- ~~Whether U-M GTFS exists publicly~~: it does (https://webapps.fo.umich.edu/transit_uploads/google_transit.zip, valid 2026-08-23 to 2027-01-02). Record the download date and hash with the results.
+- Replace sample `pois.csv` with OSM shopping and medical amenities.
 - Whether results should record `routing_percentile` per trip or just once per run.
