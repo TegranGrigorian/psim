@@ -1,16 +1,232 @@
 poi_id,lat,lon,name,category,weight
-s001,42.230000,-83.748000,Briarwood Mall area,shopping,10.0
-s002,42.280800,-83.748000,Downtown Ann Arbor (Main St),shopping,8.0
-s003,42.285500,-83.743500,Kerrytown market area,shopping,4.0
-s004,42.263000,-83.712000,Washtenaw Ave / Arborland area,shopping,8.0
-s005,42.240000,-83.699000,Carpenter Rd grocery area,shopping,6.0
-s006,42.289000,-83.715000,Plymouth Rd area (north),shopping,5.0
-s007,42.273000,-83.775000,Westgate area (west side),shopping,5.0
-s008,42.262000,-83.745000,South State St / Packard area,shopping,4.0
-s009,42.274500,-83.741000,South University area,shopping,3.0
-m001,42.283000,-83.728000,Michigan Medicine (University Hospital),medical,10.0
-m002,42.301000,-83.687000,Michigan Medicine clinics (northeast),medical,6.0
-m003,42.229000,-83.747000,Michigan Medicine clinics (Briarwood area),medical,4.0
-m004,42.257500,-83.635000,St. Joseph Mercy hospital area,medical,8.0
-m005,42.289500,-83.713500,VA Ann Arbor Healthcare,medical,5.0
-m006,42.269000,-83.737000,University Health Service area,medical,2.0
+ma1165962082,42.283172,-83.730254,University of Michigan Medical Center,medical,10.0
+ma1167011898,42.279653,-83.815007,West Ann Arbor Health Center,medical,2.0
+ma1243660480,42.286357,-83.81588,IHA Family & Internal Medicine - WestArbor,medical,2.0
+ma1275316142,42.312715,-83.653357,Best Fit Counseling & Psychiatry,medical,1.0
+ma18710039,42.263448,-83.653222,Trinity Health Ann Arbor Hospital,medical,10.0
+ma187526004,42.267853,-83.647806,Sanctuary at St. Joseph's Village,medical,2.0
+ma187526008,42.263065,-83.65362,Michigan Orthopedic Center,medical,2.0
+ma187526048,42.266476,-83.647759,Senior Health Building,medical,2.0
+ma187526120,42.262882,-83.652256,Michigan Heart & Vascular Institute,medical,2.0
+ma187661708,42.25062,-83.661737,Fresenius Medical Care,medical,2.0
+ma187842698,42.264818,-83.658485,Fresenius Medical Care,medical,2.0
+ma187871436,42.264274,-83.654464,,medical,10.0
+ma188057436,42.264568,-83.647869,Huron Oaks Building,medical,2.0
+ma1896644802,42.260335,-83.653048,Huron Ophthalmology,medical,2.0
+ma2589534122,42.279343,-83.814162,,medical,10.0
+ma2594258548,42.263376,-83.652923,Ellen Thompson Women's Health Center,medical,2.0
+ma2696816150,42.265687,-83.653366,Outpatient Surgery Center,medical,2.0
+ma2708476490,42.282049,-83.76114,"Laura E. Babe, M.D.",medical,1.0
+ma308464262,42.27974,-83.736694,University Health Services Clinic,medical,2.0
+ma387563308,42.26219,-83.654016,Center for Digestive Care,medical,2.0
+ma573990336,42.242776,-83.744227,Building 3,medical,2.0
+ma574833890,42.243065,-83.742845,Building 2,medical,2.0
+ma574834110,42.243094,-83.741897,Building 1,medical,2.0
+ma574834176,42.243159,-83.745017,Building 4,medical,2.0
+ma574834506,42.243136,-83.745833,Building 5,medical,2.0
+ma574834690,42.243106,-83.749707,Building 9,medical,2.0
+ma574834898,42.242901,-83.750757,Building 10,medical,2.0
+ma627005872,42.308803,-83.672801,Ambulatory Surgery and Medical Procedures Center,medical,2.0
+ma627005874,42.307715,-83.675236,Rachel Upjohn Building,medical,2.0
+ma627005876,42.307937,-83.673847,East Ann Arbor Health and Geriatrics Center,medical,2.0
+ma64963724,42.263871,-83.65206,Reichert Medical Center,medical,2.0
+ma654935652,42.286381,-83.71371,VA Ann Arbor Healthcare System,medical,10.0
+ma769800488,42.277684,-83.778673,Planned Parenthood,medical,2.0
+ma838999900,42.288278,-83.737134,Brehm Tower,medical,2.0
+ma838999902,42.287965,-83.736966,W. K. Kellogg Eye Center,medical,2.0
+ma883962574,42.267364,-83.772037,Packard Health West,medical,1.0
+ma889509628,42.267693,-83.771491,,medical,1.0
+ma889509634,42.267606,-83.771342,Community Supported Anthroposophical Medicine,medical,1.0
+ma909197798,42.308498,-83.673484,Radiology,medical,2.0
+ma917645358,42.274671,-83.749202,Community Chropractic Center,medical,1.0
+ma924431218,42.258937,-83.694326,Ganger Dermatology,medical,1.0
+ma971042218,42.244581,-83.679829,Probility Physical Therapy,medical,10.0
+ma980472952,42.267484,-83.74931,First Aid,medical,2.0
+mn10212634548,42.251962,-83.773576,Pinnacle Dermatology,medical,1.0
+mn10212634556,42.252373,-83.774188,Ann Arbor Saline Dermatology,medical,1.0
+mn11929136042,42.278243,-83.780495,MD Urgent Care,medical,2.0
+mn12926809188,42.276851,-83.765492,Rudolf Steiner Health Center,medical,2.0
+mn13134535142,42.257259,-83.682666,Passport Health Ann Arbor Travel Clinic,medical,2.0
+mn13162997942,42.313078,-83.652042,Nura Wellness & Recovery,medical,2.0
+mn13246526044,42.251683,-83.654297,DaVita Dialysis,medical,2.0
+mn13274412956,42.255677,-83.69571,1st Choice Urgent Care,medical,2.0
+mn13298690714,42.279543,-83.741321,HELLOMED,medical,2.0
+mn13309468784,42.315881,-83.682861,Interventional Radiology Clinic,medical,2.0
+mn13309468785,42.314758,-83.682561,Cardiovascular Medicine Clinic,medical,2.0
+mn13309468786,42.314619,-83.682821,Plastic Surgery Clinic,medical,2.0
+mn13309468787,42.315123,-83.682872,Sports Medicine Program,medical,2.0
+mn13311066341,42.318798,-83.682628,Dermatology Clinic,medical,2.0
+mn13311066342,42.318594,-83.683012,Family Medicine Clinic,medical,2.0
+mn13311066343,42.31833,-83.682561,Allergy Clinic,medical,2.0
+mn13311066344,42.316482,-83.683009,"Metabolism, Endocrinology & Diabetes Clinic",medical,2.0
+mn13321266099,42.282036,-83.755893,Ann Arbor Family Medicine Clinic,medical,1.0
+mn13323971151,42.321466,-83.682596,Wound Care Clinic,medical,2.0
+mn13323971152,42.319974,-83.682923,Sleep Disorders Center,medical,2.0
+mn13382185050,42.274778,-83.733442,Medical Care 1,medical,2.0
+mn13452748654,42.263825,-83.652172,Center for Plastic Surgery Ann Arbor,medical,2.0
+mn13907789208,42.253122,-83.667997,Therapeutics,medical,2.0
+mn13966021108,42.255788,-83.695312,Vivo Infusion,medical,2.0
+mn14006518539,42.253042,-83.774698,Ann Arbor Center for the Family,medical,1.0
+mn14015198201,42.259005,-83.661883,"Trinity Health IHA Medical Group, Plastic & Reconstructive Surgery - Arbor Park",medical,1.0
+mn14042428708,42.255874,-83.695321,Medical Weight Loss Clinic,medical,2.0
+mn14100934192,42.312127,-83.678296,"Trinity Health IHA Medical Group, Obstetrics & Gynecology - Domino's Farms",medical,2.0
+mn14100934195,42.312174,-83.678245,Trinity Health IHA Imaging - Domino's Farms,medical,2.0
+mn14100934196,42.312231,-83.67822,Trinity Health IHA Urgent Care - Domino's Farms,medical,2.0
+mn14100934197,42.312174,-83.678376,"Trinity Health IHA Medical Group, Nurse Midwives - Domino's Farms",medical,2.0
+mn14100934198,42.312249,-83.678408,"Trinity Health IHA Medical Group, Pediatrics - Domino's Farms",medical,2.0
+mn14100934199,42.312218,-83.678317,"Trinity Health IHA Medical Group, Primary Care - Domino's Farms",medical,2.0
+mn14100934200,42.312312,-83.678338,Trinity Health Medical Center - Domino's Farms,medical,2.0
+mn14269399314,42.25569,-83.695362,Workit Health,medical,2.0
+mn14288259448,42.230099,-83.678597,VitaMed Rapid Care,medical,2.0
+mn14294174925,42.250898,-83.657103,Dialysis Access Center of Southeast Michigan,medical,2.0
+mn2016042632,42.25427,-83.777787,MedSport,medical,2.0
+mn3074088120,42.280026,-83.748753,Grove Emotional Health Collaborative,medical,1.0
+mn367812830,42.242958,-83.750857,Briarwood Family Medicine,medical,1.0
+mn367813128,42.286327,-83.81595,IHA WestArbor Primary Care,medical,1.0
+mn367813163,42.294246,-83.780494,Community Family Health Center,medical,1.0
+mn367813168,42.242713,-83.744217,Briarwood Medical Group,medical,1.0
+mn367813227,42.2572,-83.6818,McAuley Outpatient Mental Health and Chemical Dependence Services,medical,1.0
+mn4574208234,42.261316,-83.714385,Ann Arbor Plastic Surgery,medical,1.0
+mn4933208502,42.246042,-83.740529,Integrative Healthcare Providers,medical,1.0
+mn4934466608,42.255802,-83.751069,South Main Orthopaedics,medical,2.0
+mn4935570675,42.280074,-83.746257,Mary A. Rackham Institute,medical,1.0
+mn5018488431,42.241721,-83.770401,Ann Arbor Dialysis of Davita,medical,2.0
+mn5018488432,42.241636,-83.77044,Team Rehabilitation,medical,2.0
+mn5286444167,42.244857,-83.744896,Headache and Neuropathic Pain Clinic,medical,2.0
+mn5286444168,42.244345,-83.744855,Back and Pain Center,medical,2.0
+mn5286444169,42.244596,-83.744872,General Rehabilitation and Spine Clinic,medical,2.0
+mn5352956278,42.306662,-83.691691,Partners in Internal Medicine,medical,1.0
+mn6845024399,42.252283,-83.669785,Prognify Urgent Care of Ann Arbor,medical,2.0
+mn8778036959,42.258302,-83.664016,Pain Recovery Solutions,medical,2.0
+mn9099549386,42.28017,-83.742657,Mary A. Rackham Institute,medical,2.0
+mn9414451076,42.260954,-83.736824,Ann Arbor Urgent Care,medical,2.0
+sa10231558,42.2403,-83.746702,Briarwood Mall,shopping,10.0
+sa1124232694,42.214341,-83.796681,Tippins Market,shopping,3.0
+sa1243584840,42.317807,-83.647172,Shell,shopping,1.0
+sa1342383550,42.240803,-83.748718,JCPenney,shopping,4.0
+sa1342383552,42.239151,-83.747185,Von Maur,shopping,4.0
+sa1342383554,42.241359,-83.746175,Macy's,shopping,4.0
+sa1818415854,42.254325,-83.680266,Amoco,shopping,1.0
+sa1876461324,42.242544,-83.679972,ALDI,shopping,3.0
+sa192317840,42.249132,-83.659898,Fresh Thyme,shopping,3.0
+sa192317846,42.249608,-83.661394,Golfside Market,shopping,1.0
+sa192318714,42.249285,-83.656506,Hua Xing Asia Market,shopping,3.0
+sa194344662,42.233593,-83.677011,Meijer,shopping,3.0
+sa2557841264,42.240101,-83.746568,Munchies,shopping,1.0
+sa2576887368,42.291414,-83.717246,Blue Market,shopping,1.0
+sa2894480110,42.242763,-83.682434,Kroger,shopping,3.0
+sa2900882902,42.240091,-83.743989,Harvest Market,shopping,3.0
+sa3069300154,42.303764,-83.691248,Busch's Fresh Food Market,shopping,3.0
+sa385972114,42.258243,-83.68878,Kroger,shopping,3.0
+sa385984934,42.235637,-83.67689,Target,shopping,4.0
+sa386084114,42.257914,-83.698183,Whole Foods Market,shopping,3.0
+sa387004102,42.284397,-83.746352,Kerrytown Market,shopping,10.0
+sa411977938,42.279191,-83.782926,,shopping,10.0
+sa411979830,42.277561,-83.781997,Kroger,shopping,3.0
+sa412084418,42.285923,-83.841869,Meijer,shopping,3.0
+sa431164652,42.284861,-83.78155,Plum Market,shopping,3.0
+sa513336140,42.277072,-83.731199,Strickland's Market,shopping,1.0
+sa590530516,42.202225,-83.691671,Williams Party Store,shopping,1.0
+sa590542490,42.233309,-83.681226,Gordon Food Service,shopping,3.0
+sa590900704,42.240309,-83.738411,State Street Fuel Mart,shopping,1.0
+sa597826062,42.306071,-83.691231,Plum Market,shopping,3.0
+sa607365638,42.239399,-83.766363,Meijer,shopping,3.0
+sa608839716,42.243938,-83.769638,Target,shopping,4.0
+sa621500530,42.297714,-83.722211,Shell,shopping,1.0
+sa640382132,42.239891,-83.760685,Kohl's,shopping,4.0
+sa658283440,42.211946,-83.620917,Kroger,shopping,3.0
+sa667160542,42.268812,-83.73598,Sergeant Pepper's General Store,shopping,1.0
+sa763065330,42.245386,-83.702049,Gallup One Stop,shopping,1.0
+sa763065350,42.245486,-83.698077,Galleria Asian Market,shopping,3.0
+sa763065382,42.244571,-83.699709,Bombay Grocers,shopping,1.0
+sa787835954,42.273893,-83.750378,Washtenaw Dairy,shopping,1.0
+sa808496956,42.285417,-83.778884,ALDI,shopping,3.0
+sa885636376,42.228819,-83.644073,Speedway,shopping,1.0
+sa885636412,42.230975,-83.644828,7-Eleven,shopping,1.0
+sa919923578,42.303075,-83.704817,Speedway,shopping,1.0
+sa926546238,42.24542,-83.700664,Mike's House of Liquor,shopping,1.0
+sa971042208,42.244996,-83.678013,Z Z's Produce,shopping,3.0
+sa977920710,42.27379,-83.748675,Amoco Gas Station,shopping,1.0
+sn10542046201,42.27962,-83.746354,Kanbu Asian Mart,shopping,3.0
+sn1121114075,42.25815,-83.687991,Marshalls,shopping,4.0
+sn11926547551,42.228588,-83.649227,Sahara Market,shopping,3.0
+sn13196117015,42.318063,-83.646673,All Seasons Market,shopping,3.0
+sn13246526045,42.251674,-83.654633,Save-A-Lot,shopping,3.0
+sn13246534069,42.251246,-83.653523,DashMart,shopping,1.0
+sn13276433794,42.258182,-83.686043,Ross,shopping,4.0
+sn13279100328,42.289792,-83.737675,Orange Market,shopping,1.0
+sn13298659861,42.279518,-83.740454,Target Grocery,shopping,3.0
+sn13784617791,42.282968,-83.783404,Burlington,shopping,4.0
+sn13829268510,42.255445,-83.691514,Patel Brothers,shopping,3.0
+sn13899794060,42.248238,-83.646934,M&A,shopping,1.0
+sn13952024761,42.247578,-83.738592,Vertical Media Solutions,shopping,3.0
+sn14007201651,42.246562,-83.679856,African & Caribbean Food Market,shopping,3.0
+sn14195702147,42.269716,-83.747681,Fan Fuel Mart,shopping,1.0
+sn1712874349,42.284403,-83.746046,Sparrow Market,shopping,1.0
+sn2040508139,42.258441,-83.712904,Trader Joe's,shopping,3.0
+sn2352859060,42.304537,-83.708925,Kroger,shopping,3.0
+sn2758425143,42.228825,-83.737973,Speedway,shopping,1.0
+sn2758425146,42.245131,-83.681178,Speedway,shopping,1.0
+sn2758425281,42.231203,-83.679314,Meijer,shopping,1.0
+sn2760098962,42.282904,-83.74692,People's Food Co-op,shopping,3.0
+sn2760098972,42.277708,-83.749188,Main Street Convenience,shopping,1.0
+sn2832738011,42.248364,-83.758371,Whole Foods Market,shopping,3.0
+sn2874423247,42.279503,-83.74066,Target,shopping,4.0
+sn3356850177,42.303454,-83.70518,Way 1 Supermarket,shopping,3.0
+sn3537284304,42.24381,-83.682087,Burlington,shopping,4.0
+sn3537284308,42.243556,-83.682055,TJ Maxx,shopping,4.0
+sn3879079110,42.253702,-83.751364,Busch's Fresh Food Market,shopping,3.0
+sn4041131117,42.23091,-83.698926,Quik Mart,shopping,1.0
+sn4396703020,42.272042,-83.776486,Arbor Farms Market,shopping,3.0
+sn4406283404,42.273915,-83.775413,Gordon Food Service,shopping,3.0
+sn4437933857,42.273927,-83.779412,Buscemi's of Ann Arbor,shopping,1.0
+sn4771591637,42.272504,-83.749752,7-Eleven,shopping,1.0
+sn4777237325,42.274084,-83.735611,Replenish,shopping,1.0
+sn4781784132,42.271292,-83.740801,Campus Corner,shopping,1.0
+sn4794244056,42.258549,-83.737861,By The Pound,shopping,3.0
+sn4938377852,42.274544,-83.732919,7-Eleven,shopping,1.0
+sn4945806630,42.278707,-83.740932,7-Eleven,shopping,1.0
+sn5000907326,42.258038,-83.737522,Stadium Deli & Liquor,shopping,1.0
+sn5018488425,42.242235,-83.769816,Tsai Grocery,shopping,3.0
+sn504396195,42.255342,-83.690921,Falsetta's,shopping,1.0
+sn5348311740,42.258159,-83.680395,Simply Vegan Foods,shopping,3.0
+sn5351894003,42.304888,-83.691502,Colonial BP,shopping,1.0
+sn542783623,42.282537,-83.748721,Main Street Party Store,shopping,1.0
+sn5876663338,42.278704,-83.78228,TJ Maxx,shopping,4.0
+sn5884219889,42.285616,-83.781689,,shopping,1.0
+sn6926929570,42.254782,-83.688991,BetterHealth Market & Café,shopping,3.0
+sn7041639787,42.244773,-83.696075,Aladdin’s Market (Halal Grocer),shopping,3.0
+sn7837132777,42.229442,-83.644645,ALEZ Market,shopping,3.0
+sn7837151918,42.230907,-83.698612,MODU MART,shopping,3.0
+sn8024121406,42.229179,-83.718559,Mediterranean Market,shopping,3.0
+sn8439710029,42.253637,-83.621171,Kampus Korner,shopping,1.0
+sn8439710101,42.247266,-83.639142,Mobil Mart,shopping,1.0
+sn8439710103,42.24688,-83.636468,BP Shop,shopping,1.0
+sn8439710104,42.24749,-83.635599,Eastern Fuel Mart,shopping,1.0
+sn8439710125,42.221429,-83.658888,Ypsi Convenience,shopping,1.0
+sn8439710126,42.204724,-83.68899,Ypsilanti Fuel Stop,shopping,1.0
+sn8439710130,42.20741,-83.679081,Borimex,shopping,1.0
+sn8439710131,42.20821,-83.678852,Circle K,shopping,1.0
+sn8439710132,42.20762,-83.680128,Barneys Convenience Mart,shopping,1.0
+sn8441897387,42.283476,-83.748014,University Fuel Mart,shopping,1.0
+sn8441897389,42.293553,-83.839595,BP Shop,shopping,1.0
+sn8441897391,42.294878,-83.780101,Speedway,shopping,1.0
+sn8441897394,42.281974,-83.76713,The Party Center,shopping,1.0
+sn8441897395,42.284598,-83.802373,Scio Fuel,shopping,1.0
+sn8441897400,42.289665,-83.841798,,shopping,1.0
+sn8441897416,42.28789,-83.842303,Meijer,shopping,1.0
+sn8441975817,42.281169,-83.780924,Shell,shopping,1.0
+sn8441975822,42.260538,-83.729359,A2 Auto Center,shopping,1.0
+sn8441975833,42.260325,-83.729964,Circle K,shopping,1.0
+sn8441975834,42.270854,-83.773397,Speedway,shopping,1.0
+sn8441975836,42.278349,-83.779908,Stadium Store Marathon,shopping,1.0
+sn8441975839,42.247776,-83.759534,Ann Arbor Gateway,shopping,1.0
+sn8441975840,42.241094,-83.765606,Meijer,shopping,1.0
+sn8441975841,42.24012,-83.739732,BP Shop,shopping,1.0
+sn8441975852,42.255787,-83.688583,Washtenaw Oil,shopping,1.0
+sn8441975854,42.258085,-83.699486,Sunny Oil,shopping,1.0
+sn8441975857,42.256487,-83.696414,Shell,shopping,1.0
+sn8441975858,42.249853,-83.661545,Washtenaw Marathon,shopping,1.0
+sn8441975860,42.250587,-83.661437,Washtenaw Food and Gas,shopping,1.0
+sn8441975863,42.25352,-83.680296,Carpenter Convenience,shopping,1.0
+sn8441975865,42.234729,-83.739795,State Petro,shopping,1.0

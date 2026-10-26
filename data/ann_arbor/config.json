@@ -3,14 +3,25 @@
   "display_name": "Ann Arbor, MI",
   "timezone": "America/Detroit",
   "sample_data": true,
-  "bbox": [-83.85, 42.20, -83.62, 42.34],
+  "bbox": [
+    -83.85,
+    42.2,
+    -83.62,
+    42.34
+  ],
   "population_size": 1000,
-  "represented_population": 123851,
+  "represented_population": 105880,
   "n_replicates": 100,
   "base_seed": null,
   "gtfs": {
-    "baseline": ["raw/gtfs/theride", "raw/gtfs/umich"],
-    "redesign_v1": ["raw/gtfs_redesign_v1/theride", "raw/gtfs/umich"]
+    "baseline": [
+      "raw/gtfs/theride",
+      "raw/gtfs/umich"
+    ],
+    "redesign_v1": [
+      "raw/gtfs_redesign_v1/theride",
+      "raw/gtfs/umich"
+    ]
   },
   "osm": "raw/osm.pbf",
   "service_date": "2026-11-10",
@@ -19,11 +30,12 @@
   "max_walk_minutes": 20,
   "max_trip_minutes": 120,
   "group_shares": {
-    "undergraduate": 0.20,
-    "graduate": 0.10,
-    "university_staff": 0.10,
-    "resident_worker": 0.30,
-    "shift_worker": 0.15,
-    "retired": 0.15
-  }
+    "undergraduate": 0.276,
+    "graduate": 0.1227,
+    "university_staff": 0.2082,
+    "resident_worker": 0.1939,
+    "shift_worker": 0.0541,
+    "retired": 0.1451
+  },
+  "undergraduate_dorm_share": 0.4343
 }
