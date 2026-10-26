@@ -37,5 +37,14 @@
     "shift_worker": 0.0541,
     "retired": 0.1451
   },
-  "undergraduate_dorm_share": 0.4343
+  "undergraduate_dorm_share": 0.4343,
+  "reliability": {
+    "model": "exponential_lateness",
+    "on_time_share": 0.82,
+    "on_time_window_minutes": 5,
+    "arrive_margin_minutes": 5,
+    "target_reliability": 0.95,
+    "draws": 1000,
+    "source": "TheRide Q1 FY2026 Service Report (Oct-Dec 2025): fixed-route on-time performance 82% (87%, 87%, 81% in the other FY2025 quarters), benchmark 80%. U-M buses publish no figure; the same distribution is assumed for them."
+  }
 }
