@@ -1,0 +1,71 @@
+{
+  "state": "26",
+  "county": "161",
+  "place": "03000",
+  "pl_zip": "raw/census/mi2020.pl.zip",
+  "wac_gz": "raw/census/mi_wac_S000_JT00_2021.csv.gz",
+  "acs_tracts": "raw/census/acs_tracts.json",
+  "acs_place": "raw/census/acs_place.json",
+  "osm_pois": "raw/osm_pois.geojson",
+  "university_operators": [
+    "University of Michigan",
+    "Michigan Medicine"
+  ],
+  "campus_polygons": [
+    {
+      "name": "Central Campus",
+      "zone": "central"
+    },
+    {
+      "name": "North Campus",
+      "zone": "north"
+    },
+    {
+      "name": "South Campus",
+      "zone": "athletic"
+    },
+    {
+      "name": "East Campus",
+      "zone": "other"
+    }
+  ],
+  "assumptions": {
+    "night_share": {
+      "healthcare": 0.25,
+      "retail_food": 0.2,
+      "other_service": 0.15,
+      "industry_tech": 0.05,
+      "government": 0.02,
+      "university": 0.0,
+      "education_k12": 0.0
+    },
+    "night_share_note": "LODES has no shift information. Share of jobs worked on the night shift, by sector. PLACEHOLDER: replace with evidence (BLS, interviews) before reporting results.",
+    "income_low_below": 50000,
+    "income_high_from": 110000,
+    "income_note": "Tract median household income (ACS) -> band. Roughly 0.6x and 1.35x the city median of $81,089.",
+    "college_housing_undergraduate_fraction": 0.85,
+    "college_housing_note": "Share of the Census 'college/university student housing' population assumed to be undergraduates (the rest are graduate students in family and graduate housing). PLACEHOLDER.",
+    "poi_weights": {
+      "shopping": {
+        "supermarket": 3,
+        "mall": 10,
+        "department_store": 4,
+        "convenience": 1
+      },
+      "medical": {
+        "hospital": 10,
+        "clinic": 2,
+        "doctors": 1,
+        "doctor": 1
+      }
+    },
+    "poi_weights_note": "Relative attractiveness by OSM type. PLACEHOLDER."
+  },
+  "osm_buildings": "raw/osm_buildings.geojson",
+  "hospital_operator": "Michigan Medicine",
+  "min_building_m2": 50,
+  "university_address_blocks": [
+    "261614022015000"
+  ],
+  "university_address_note": "LODES places 28,766 of the city's 32,738 education jobs (essentially all of U-M's non-hospital staff; OBP reports 33,291 campus staff) in this one block, the employer's reported address, not where people work. prepare moves them onto academic buildings in proportion to footprint area. Found by listing the blocks with the most education jobs; re-check if the LODES year changes."
+}
