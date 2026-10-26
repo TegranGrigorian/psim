@@ -2,6 +2,7 @@
   "city_slug": "ann_arbor",
   "display_name": "Ann Arbor, MI",
   "timezone": "America/Detroit",
+  "sample_data": true,
   "bbox": [-83.85, 42.20, -83.62, 42.34],
   "population_size": 1000,
   "represented_population": 123851,
