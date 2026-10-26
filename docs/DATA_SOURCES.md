@@ -76,18 +76,37 @@ Tract-level tables (tenure, income, vehicles, age) for all 107 Washtenaw County 
 
 2021 is the latest year in the folder at the time of retrieval.
 
-## 4. Assumptions the data cannot settle
+## 4. How `psim-tools prepare` builds the inputs, and the assumptions it makes
 
-These need to be stated in the paper and, where possible, replaced with evidence from fieldwork.
+`psim-tools prepare --city ann_arbor` reads only files `fetch.sh` downloaded (hashes in `sources.json`) and the parameters in `data/ann_arbor/prepare.json`. Study area: blocks of Ann Arbor city (place 03000), 1,322 blocks, 635 of them with jobs. Every number below is what the last run printed. Where the data cannot settle something, the assumption is in `prepare.json` and listed here; none of them is a result.
 
-1. **Which jobs are the university's.** LODES does not name employers. Plan: treat education-sector jobs in blocks inside the U-M campus boundary, and healthcare jobs in the hospital blocks, as university jobs. The OBP totals above bound the result (about 56,000 campus and hospital employees, of whom only some work inside the city blocks we select).
-2. **Night shifts.** LODES has no shift information. Plan: a share of night work by industry sector (high in healthcare, accommodation and food service, warehousing; near zero in offices and education). The shares will be written down here when chosen.
-3. **Tenure by block.** The 2020 file gives housing units per block but not rent versus own; each block will get its tract's ACS renter share.
-4. **Dorm locations.** Student-housing population by block from the 2020 file (14,930 in the city). University Housing's own capacity page could not be retrieved (HTTP 403), so the dorm total is cross-checked only against the Census figure.
-5. **Income, cars, ages** are drawn from the tract ACS tables with noise, as in `SCHEMA.md`.
+| Input | How it is built | Check |
+|---|---|---|
+| `housing.csv` (2,072 rows) | Per block, from the 2020 file: occupied housing units split into owner and renter rows by the block's tract ACS renter share; student housing (group quarters, 14,930) as `dorm` rows; nursing and other group quarters as `other_group`. Neighborhood = tract. Income band from tract median household income (below $50,000 low, $110,000 and above high). | 22,427 owner + 27,521 renter units against ACS's 49,907 occupied units; 14,930 in student housing matches the Census API |
+| `workplaces.csv` (3,107 rows) | Per block and industry sector, from LODES 2021 jobs; each row split into day and night shifts by a per-sector night share (assumption 2). | 98,494 jobs, exactly the LODES total for the city |
+| `campus_locations.csv` (557) | Academic and office buildings inside the OSM polygons of Central, North, South and East Campus, excluding anything Michigan Medicine runs; weight = building footprint area. | 299,833 m² central, 341,465 north, 221,776 athletic |
+| `pois.csv` (231) | OSM shops and health facilities inside the bbox, weighted by type (assumption 4). | 130 shopping, 101 medical |
+| `group_shares`, `represented_population`, `undergraduate_dorm_share` in `config.json` | Students and over-65s from ACS (shares of adults 18+); the remaining working-age adults split by where the jobs are (university standard-day / any night shift / other standard-day), so the shares match the pools personas draw anchors from. Dorm share = 14,930 × 0.85 ÷ 29,223 undergraduates = 43.4%. `represented_population` = ACS adults 18+ (105,880): personas are adults. | undergraduate 27.6%, graduate 12.3%, university staff 20.8%, resident worker 19.4%, shift worker 5.4%, retired 14.5% |
+
+### LODES puts almost all of U-M's jobs in one block
+
+LODES assigns jobs to the employer's *reported address*. In the city, block 261614022015000 holds **28,766 of the 32,738 education-sector jobs** (and 28,851 jobs in all): essentially U-M's non-hospital staff (OBP: 33,291 campus staff). Used as-is, every university employee would commute to one point and none would be recognized as university staff, because that block is not on any campus polygon. `prepare` therefore moves those jobs onto the 557 campus buildings in proportion to footprint area (`university_address_blocks` in `prepare.json`). The hospital's jobs are not affected: LODES places them in two real blocks inside the hospital polygon (14,333 and 5,824 jobs). The block was found by listing the blocks with the most education jobs; re-check it if the LODES year changes.
+
+University jobs after this: 50,056 (the moved jobs plus healthcare and other jobs on university land) against OBP's 56,276 campus and hospital staff. The gap is jobs in Michigan Medicine buildings outside the hospital polygon.
+
+### Assumptions (all in `prepare.json`, all placeholders until evidence replaces them)
+
+1. **Which jobs are the university's.** Jobs in blocks inside a polygon run by U-M or Michigan Medicine (OSM `operator`), except retail and food service; plus the moved jobs above. Michigan Medicine buildings elsewhere are not recognized.
+2. **Night shifts.** LODES has no shift information. Share of jobs on the night shift: healthcare 25%, retail and food 20%, other services 15%, technology and manufacturing 5%, government 2%, education and university 0%. 11,687 jobs (12%) end up on the night shift. This sets the size of the `shift_worker` group.
+3. **Dorm share.** 85% of the Census "college/university student housing" population is assumed to be undergraduates; the rest are graduate students.
+4. **Point-of-interest weights.** Supermarket 3, mall 10, department store 4, convenience 1; hospital 10, clinic 2, doctors 1.
+5. **Housing type** is inferred only from the number of rental units in a block (20 or more is an apartment building) and is not used by the simulation.
+6. **Residents versus jobs.** Personas draw workplaces in proportion to all jobs in the city, but many of those jobs are held by people who live elsewhere, and many residents work outside the city. The LODES residence-to-workplace table (`od`) would fix this and is the main known improvement.
+7. **Students outside the city** (U-M students living in Ypsilanti or elsewhere) are not modeled; the student shares come from residents enrolled, not from U-M enrollment.
 
 ## 5. Not verified
 
+- **Whether the moved block is entirely U-M.** The magnitude (28,766 education jobs against 33,291 campus staff) makes it near-certain, but LODES does not name employers.
 - **Number of beds in university housing.** A Michigan Daily article (Jan 2023) and U-M news items report "more than 11,000 students" in university housing and a new 2,300-bed hall, but I only saw these as search snippets. The Census figure of 14,930 is higher because it counts all student housing (co-ops, other operators), not only U-M halls.
 - **First-year housing requirement or share living on campus.** One aggregator claims over 97%; no official source was retrieved. Not used.
 - **Fall 2026 enrollment.** The latest OBP table is Fall 2025; the semester simulated is Fall 2026.

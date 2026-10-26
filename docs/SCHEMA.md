@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.5 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.6 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -24,6 +24,7 @@ data/<city_slug>/
     osm.pbf
   housing.csv            # human/tool-prepared inputs
   workplaces.csv
+  prepare.json           # human-written: raw file names and the assumptions `psim-tools prepare` uses
   campus_locations.csv   # study locations (subset of destinations)
   pois.csv               # discretionary destinations: shopping, medical
   generated/<run_id>/    # outputs of psim-tools generate
@@ -74,7 +75,7 @@ data/<city_slug>/
 }
 ```
 
-`sample_data` (optional, default `false`) is `true` while the input tables are invented placeholders; `psim-tools analyze` then flags every summary `"fake": true`, which makes the site show its preview banner. Set it to `false` only when all inputs are real. `represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday (Mon–Fri) covered by every GTFS feed used; the engine routes `mon`..`fri` trips on it. `weekend_service_date` must be a Saturday in the same period; the engine routes `sat` trips on it. `sun` trips are not generated in v1. `psim-tools` checks both weekdays (not GTFS coverage). Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
+`undergraduate_dorm_share` (optional) is the share of undergraduates who live in university housing (`tenure = dorm`); the rest rent. If absent they pick a dorm or a rental in proportion to units. `sample_data` (optional, default `false`) is `true` while the input tables are invented placeholders; `psim-tools analyze` then flags every summary `"fake": true`, which makes the site show its preview banner. Set it to `false` only when all inputs are real. `represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday (Mon–Fri) covered by every GTFS feed used; the engine routes `mon`..`fri` trips on it. `weekend_service_date` must be a Saturday in the same period; the engine routes `sat` trips on it. `sun` trips are not generated in v1. `psim-tools` checks both weekdays (not GTFS coverage). Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
 
 ---
 
@@ -94,6 +95,8 @@ One row per housing unit *or* per small aggregated location (e.g. a parcel, buil
 | `neighborhood` | string | yes | neighborhood slug; free-form per city, used for grouping in analysis |
 | `tract_geoid` | string | yes | 11-digit Census tract GEOID, used to join demographic distributions |
 | `median_income_band` | enum | no | `low`, `mid`, `high`; derived from tract data |
+| `share_18_24` | float | no | share of the tract's population aged 18–24 (ACS). Where present, students pick rentals weighted by `units × share_18_24`. |
+| `no_vehicle_share` | float | no | share of this tenure's households in the tract with no vehicle (ACS). Where present, `has_car` is drawn as `1 − no_vehicle_share` (dorms keep their own rule). |
 
 ### 2.2 `workplaces.csv`
 
@@ -166,7 +169,7 @@ One row per simulated person.
 | `tenure` | enum | copied from home: `own`, `rent`, `dorm`, `other_group` |
 | `age_band` | enum | `18_24`, `25_34`, `35_49`, `50_64`, `65_plus` |
 | `income_band` | enum | `low`, `mid`, `high` |
-| `has_car` | bool | drawn from income band and housing type (dorm residents rarely have cars). Not used by routing: all personas are routed, and the analysis reports both everyone and the no-car subset (see PLAN.md) |
+| `has_car` | bool | drawn from the home's `no_vehicle_share` (ACS) when present, else from income band; dorm residents rarely have cars. Not used by routing: all personas are routed, and the analysis reports both everyone and the no-car subset (see PLAN.md) |
 | `weight` | float | real people this persona represents: `represented_population / n_personas`. Used to scale results, not by routing |
 | `neighborhood` | string | copied from home |
 | `home_id` | string | FK → `housing.csv` |
@@ -179,6 +182,7 @@ One row per simulated person.
 **Group assignment rules** (documented here so the analysis is reproducible):
 - Groups are mutually exclusive for the primary `group` column. Cross-cutting attributes (`tenure`, `age_band`, `income_band`, `shift_pattern`) allow other comparisons (renters vs. homeowners, etc.).
 - `shift_worker` means the anchor workplace has a non-`standard_day` `shift_pattern` (in v1, `night`).
+- **Student housing:** with `undergraduate_dorm_share` set, an undergraduate lives in a dorm with that probability (dorm chosen by `units`), otherwise in a rental chosen by `units × share_18_24`. Graduate students always rent, chosen the same way.
 - **Group draw:** each persona's group is drawn from `group_shares`. The group sets the anchor type (students: campus location; everyone else: a workplace) and which homes are allowed (undergraduates: dorm or rental; graduate students: rental; others: any non-dorm home). Homes are drawn weighted by `units`; anchors weighted by `jobs` / `capacity_weight`. `university_staff` draw only from `is_university` workplaces with `standard_day` shifts; `shift_worker` only from non-`standard_day` workplaces (including university hospital shifts); `resident_worker` from non-university `standard_day` workplaces.
 - **Age:** undergraduate `18_24`; graduate student `18_24` or `25_34` (22–34); retired `65_plus`; everyone else spread over `25_34`, `35_49`, `50_64`.
 - **Income:** `income_band` comes from the home's `median_income_band` plus random noise (a high-income tract still holds some low-income people). Housing determines income, not the reverse.

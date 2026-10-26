@@ -1,15 +1,14 @@
-# data/ann_arbor: SAMPLE DATA
+# data/ann_arbor
 
-These files are **illustrative placeholders** used to develop and test the parsers
-and the generator. They are not research data.
+Inputs for Ann Arbor, MI, built by `psim-tools prepare --city ann_arbor` from public data.
+Sources, assumptions and checks: `docs/DATA_SOURCES.md`. Parameters: `prepare.json`.
 
-- Locations are approximate coordinates of real places (campus areas, hospitals,
-  the mall); verify before relying on them.
-- `units`, `jobs`, `capacity_weight` and `group_shares` are made up.
-- `tract_geoid` values are format-valid placeholders, not real tract joins.
+- `housing.csv`, `workplaces.csv`, `campus_locations.csv`, `pois.csv`: **generated, do not edit by hand.** Re-run `fetch.sh` then `prepare`.
+- `config.json`: human-written, except `group_shares`, `represented_population` and `undergraduate_dorm_share`, which `prepare` rewrites.
+- `fetch.sh`, `fetch_census.py`, `check_gtfs_coverage.py`: downloads (needs `osmium` and `CENSUS_API_KEY` in `psim-tools/.env`) and a check that both service dates have service.
+- `sources.json`: where every downloaded file came from, with date and hash.
+- `raw/`, `generated/`, `results/` are gitignored.
 
-Replace with real data (Census ACS/PUMS, county parcels, U-M enrollment and housing
-figures, employer counts) before running anything that is reported as a result.
+`config.json` still has `"sample_data": true` so the site shows its preview banner. The inputs are real public data, but several assumptions in `prepare.json` (night-shift shares, the dorm fraction, POI weights) are placeholders. Set it to `false` once those are settled or documented as limitations.
 
-`pois.csv` is also sample data: approximate shopping and medical areas, made-up weights.
-Replace with OSM amenities (supermarkets, malls, hospitals, clinics) for real runs.
+A tiny invented dataset for the tests lives in `psim-tools/tests/fixtures/data/`.
