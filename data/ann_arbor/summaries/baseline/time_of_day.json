@@ -1,1 +1,2101 @@
-{"schema_version":"0.1","fake":true,"city_slug":"ann_arbor","scenario":"baseline","day_types":["weekday","weekend"],"series":[{"group":"undergraduate","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.0748,"mean_wait":14.21},{"hour":1,"failure_rate":0.0699,"mean_wait":14.09},{"hour":2,"failure_rate":0.0681,"mean_wait":13.75},{"hour":3,"failure_rate":0.0705,"mean_wait":13.39},{"hour":4,"failure_rate":0.0671,"mean_wait":12.98},{"hour":5,"failure_rate":0.0432,"mean_wait":9.74},{"hour":6,"failure_rate":0.0186,"mean_wait":6.39},{"hour":7,"failure_rate":0.0202,"mean_wait":6.76},{"hour":8,"failure_rate":0.0199,"mean_wait":6.34},{"hour":9,"failure_rate":0.0188,"mean_wait":6.32},{"hour":10,"failure_rate":0.0165,"mean_wait":6.48},{"hour":11,"failure_rate":0.0161,"mean_wait":5.93},{"hour":12,"failure_rate":0.0149,"mean_wait":5.68},{"hour":13,"failure_rate":0.014,"mean_wait":5.7},{"hour":14,"failure_rate":0.0159,"mean_wait":5.69},{"hour":15,"failure_rate":0.0156,"mean_wait":5.81},{"hour":16,"failure_rate":0.0178,"mean_wait":6.02},{"hour":17,"failure_rate":0.0173,"mean_wait":6.45},{"hour":18,"failure_rate":0.0174,"mean_wait":6.35},{"hour":19,"failure_rate":0.0164,"mean_wait":6.01},{"hour":20,"failure_rate":0.0258,"mean_wait":7.35},{"hour":21,"failure_rate":0.0278,"mean_wait":7.51},{"hour":22,"failure_rate":0.0531,"mean_wait":10.52},{"hour":23,"failure_rate":0.0503,"mean_wait":10.14}]},{"group":"undergraduate","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.1044,"mean_wait":19.07},{"hour":1,"failure_rate":0.1064,"mean_wait":18.99},{"hour":2,"failure_rate":0.1088,"mean_wait":17.99},{"hour":3,"failure_rate":0.1089,"mean_wait":18.7},{"hour":4,"failure_rate":0.1002,"mean_wait":18.29},{"hour":5,"failure_rate":0.0594,"mean_wait":13},{"hour":6,"failure_rate":0.0266,"mean_wait":7.76},{"hour":7,"failure_rate":0.0289,"mean_wait":8.12},{"hour":8,"failure_rate":0.0297,"mean_wait":8.07},{"hour":9,"failure_rate":0.0251,"mean_wait":7.47},{"hour":10,"failure_rate":0.0225,"mean_wait":6.63},{"hour":11,"failure_rate":0.0204,"mean_wait":6.66},{"hour":12,"failure_rate":0.0193,"mean_wait":6.16},{"hour":13,"failure_rate":0.0172,"mean_wait":6.04},{"hour":14,"failure_rate":0.0183,"mean_wait":6.09},{"hour":15,"failure_rate":0.0198,"mean_wait":6.77},{"hour":16,"failure_rate":0.0212,"mean_wait":6.73},{"hour":17,"failure_rate":0.0237,"mean_wait":6.96},{"hour":18,"failure_rate":0.0223,"mean_wait":6.82},{"hour":19,"failure_rate":0.0194,"mean_wait":6.78},{"hour":20,"failure_rate":0.0357,"mean_wait":8.32},{"hour":21,"failure_rate":0.0353,"mean_wait":8.18},{"hour":22,"failure_rate":0.0642,"mean_wait":12.4},{"hour":23,"failure_rate":0.0631,"mean_wait":11.62}]},{"group":"graduate","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.1401,"mean_wait":16.69},{"hour":1,"failure_rate":0.1485,"mean_wait":15.22},{"hour":2,"failure_rate":0.1543,"mean_wait":15.59},{"hour":3,"failure_rate":0.1457,"mean_wait":16.58},{"hour":4,"failure_rate":0.1454,"mean_wait":15.68},{"hour":5,"failure_rate":0.0889,"mean_wait":11.55},{"hour":6,"failure_rate":0.033,"mean_wait":7.21},{"hour":7,"failure_rate":0.0402,"mean_wait":7.62},{"hour":8,"failure_rate":0.0398,"mean_wait":7.76},{"hour":9,"failure_rate":0.0388,"mean_wait":7.6},{"hour":10,"failure_rate":0.0355,"mean_wait":7.16},{"hour":11,"failure_rate":0.0318,"mean_wait":7.16},{"hour":12,"failure_rate":0.0288,"mean_wait":6.6},{"hour":13,"failure_rate":0.0274,"mean_wait":6.73},{"hour":14,"failure_rate":0.0304,"mean_wait":6.8},{"hour":15,"failure_rate":0.0325,"mean_wait":7.42},{"hour":16,"failure_rate":0.0375,"mean_wait":7.13},{"hour":17,"failure_rate":0.0369,"mean_wait":7.14},{"hour":18,"failure_rate":0.0356,"mean_wait":7.6},{"hour":19,"failure_rate":0.0308,"mean_wait":7.2},{"hour":20,"failure_rate":0.053,"mean_wait":8.61},{"hour":21,"failure_rate":0.0584,"mean_wait":8.9},{"hour":22,"failure_rate":0.0963,"mean_wait":12.72},{"hour":23,"failure_rate":0.0951,"mean_wait":12.48}]},{"group":"graduate","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.229,"mean_wait":21.83},{"hour":1,"failure_rate":0.2119,"mean_wait":21.2},{"hour":2,"failure_rate":0.206,"mean_wait":20.82},{"hour":3,"failure_rate":0.2075,"mean_wait":22.3},{"hour":4,"failure_rate":0.2131,"mean_wait":21.65},{"hour":5,"failure_rate":0.1297,"mean_wait":15.22},{"hour":6,"failure_rate":0.0533,"mean_wait":8.79},{"hour":7,"failure_rate":0.0594,"mean_wait":9.29},{"hour":8,"failure_rate":0.0587,"mean_wait":9.12},{"hour":9,"failure_rate":0.0507,"mean_wait":8.31},{"hour":10,"failure_rate":0.0448,"mean_wait":8.09},{"hour":11,"failure_rate":0.0405,"mean_wait":7.66},{"hour":12,"failure_rate":0.0391,"mean_wait":7.49},{"hour":13,"failure_rate":0.0365,"mean_wait":7.55},{"hour":14,"failure_rate":0.039,"mean_wait":7.19},{"hour":15,"failure_rate":0.0387,"mean_wait":7.43},{"hour":16,"failure_rate":0.0432,"mean_wait":7.74},{"hour":17,"failure_rate":0.0425,"mean_wait":7.84},{"hour":18,"failure_rate":0.0402,"mean_wait":8.07},{"hour":19,"failure_rate":0.0377,"mean_wait":7.76},{"hour":20,"failure_rate":0.0701,"mean_wait":10.39},{"hour":21,"failure_rate":0.0707,"mean_wait":10.01},{"hour":22,"failure_rate":0.1154,"mean_wait":14.18},{"hour":23,"failure_rate":0.1172,"mean_wait":14.11}]},{"group":"university_staff","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.1946,"mean_wait":19.09},{"hour":1,"failure_rate":0.1956,"mean_wait":20.6},{"hour":2,"failure_rate":0.1944,"mean_wait":19.8},{"hour":3,"failure_rate":0.2034,"mean_wait":20.6},{"hour":4,"failure_rate":0.197,"mean_wait":19.28},{"hour":5,"failure_rate":0.1176,"mean_wait":14.19},{"hour":6,"failure_rate":0.0474,"mean_wait":9.18},{"hour":7,"failure_rate":0.0522,"mean_wait":9.04},{"hour":8,"failure_rate":0.0512,"mean_wait":9.73},{"hour":9,"failure_rate":0.0511,"mean_wait":9.69},{"hour":10,"failure_rate":0.0474,"mean_wait":8.67},{"hour":11,"failure_rate":0.0439,"mean_wait":8.81},{"hour":12,"failure_rate":0.0398,"mean_wait":8.14},{"hour":13,"failure_rate":0.0366,"mean_wait":8.05},{"hour":14,"failure_rate":0.0383,"mean_wait":8.14},{"hour":15,"failure_rate":0.0447,"mean_wait":8.84},{"hour":16,"failure_rate":0.0494,"mean_wait":9.12},{"hour":17,"failure_rate":0.0473,"mean_wait":8.8},{"hour":18,"failure_rate":0.0475,"mean_wait":9.42},{"hour":19,"failure_rate":0.0448,"mean_wait":8.42},{"hour":20,"failure_rate":0.0691,"mean_wait":11.04},{"hour":21,"failure_rate":0.071,"mean_wait":10.34},{"hour":22,"failure_rate":0.1375,"mean_wait":15.16},{"hour":23,"failure_rate":0.1265,"mean_wait":14.71}]},{"group":"university_staff","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.2782,"mean_wait":26.15},{"hour":1,"failure_rate":0.2791,"mean_wait":26.11},{"hour":2,"failure_rate":0.2716,"mean_wait":27.55},{"hour":3,"failure_rate":0.2989,"mean_wait":26.16},{"hour":4,"failure_rate":0.3049,"mean_wait":25.96},{"hour":5,"failure_rate":0.1786,"mean_wait":18.68},{"hour":6,"failure_rate":0.0733,"mean_wait":10.4},{"hour":7,"failure_rate":0.0771,"mean_wait":10.83},{"hour":8,"failure_rate":0.0805,"mean_wait":11.62},{"hour":9,"failure_rate":0.0652,"mean_wait":10.17},{"hour":10,"failure_rate":0.0599,"mean_wait":10.11},{"hour":11,"failure_rate":0.0492,"mean_wait":9.61},{"hour":12,"failure_rate":0.0509,"mean_wait":9.5},{"hour":13,"failure_rate":0.0463,"mean_wait":8.74},{"hour":14,"failure_rate":0.0517,"mean_wait":8.96},{"hour":15,"failure_rate":0.0562,"mean_wait":9.42},{"hour":16,"failure_rate":0.0594,"mean_wait":9.44},{"hour":17,"failure_rate":0.06,"mean_wait":10.42},{"hour":18,"failure_rate":0.0598,"mean_wait":10.27},{"hour":19,"failure_rate":0.0527,"mean_wait":9.14},{"hour":20,"failure_rate":0.0907,"mean_wait":12.39},{"hour":21,"failure_rate":0.086,"mean_wait":12.6},{"hour":22,"failure_rate":0.1554,"mean_wait":18.03},{"hour":23,"failure_rate":0.1669,"mean_wait":17.52}]},{"group":"resident_worker","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.4333,"mean_wait":28.75},{"hour":1,"failure_rate":0.3942,"mean_wait":28.63},{"hour":2,"failure_rate":0.4005,"mean_wait":28.34},{"hour":3,"failure_rate":0.4174,"mean_wait":28.76},{"hour":4,"failure_rate":0.4045,"mean_wait":28.62},{"hour":5,"failure_rate":0.2273,"mean_wait":21.25},{"hour":6,"failure_rate":0.0987,"mean_wait":13},{"hour":7,"failure_rate":0.1076,"mean_wait":14.76},{"hour":8,"failure_rate":0.1098,"mean_wait":14.53},{"hour":9,"failure_rate":0.1109,"mean_wait":14.78},{"hour":10,"failure_rate":0.0968,"mean_wait":13.01},{"hour":11,"failure_rate":0.0959,"mean_wait":13.57},{"hour":12,"failure_rate":0.0831,"mean_wait":12.88},{"hour":13,"failure_rate":0.0793,"mean_wait":13.08},{"hour":14,"failure_rate":0.0799,"mean_wait":13.2},{"hour":15,"failure_rate":0.098,"mean_wait":12.77},{"hour":16,"failure_rate":0.1018,"mean_wait":13.14},{"hour":17,"failure_rate":0.1019,"mean_wait":13.21},{"hour":18,"failure_rate":0.0932,"mean_wait":13.13},{"hour":19,"failure_rate":0.0955,"mean_wait":13.47},{"hour":20,"failure_rate":0.154,"mean_wait":16.65},{"hour":21,"failure_rate":0.1592,"mean_wait":16.37},{"hour":22,"failure_rate":0.2821,"mean_wait":23.69},{"hour":23,"failure_rate":0.2894,"mean_wait":21.8}]},{"group":"resident_worker","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.6358,"mean_wait":38.98},{"hour":1,"failure_rate":0.6253,"mean_wait":40.82},{"hour":2,"failure_rate":0.6146,"mean_wait":40.07},{"hour":3,"failure_rate":0.6289,"mean_wait":39.38},{"hour":4,"failure_rate":0.6511,"mean_wait":38.08},{"hour":5,"failure_rate":0.3862,"mean_wait":25.88},{"hour":6,"failure_rate":0.156,"mean_wait":15.72},{"hour":7,"failure_rate":0.1747,"mean_wait":17.14},{"hour":8,"failure_rate":0.1753,"mean_wait":18.1},{"hour":9,"failure_rate":0.1322,"mean_wait":15.57},{"hour":10,"failure_rate":0.1354,"mean_wait":15.29},{"hour":11,"failure_rate":0.1191,"mean_wait":14.16},{"hour":12,"failure_rate":0.1039,"mean_wait":13.43},{"hour":13,"failure_rate":0.1016,"mean_wait":13.52},{"hour":14,"failure_rate":0.1119,"mean_wait":13.88},{"hour":15,"failure_rate":0.125,"mean_wait":14.54},{"hour":16,"failure_rate":0.1241,"mean_wait":14.79},{"hour":17,"failure_rate":0.1374,"mean_wait":14.27},{"hour":18,"failure_rate":0.1312,"mean_wait":14.33},{"hour":19,"failure_rate":0.1195,"mean_wait":13.91},{"hour":20,"failure_rate":0.1907,"mean_wait":18.12},{"hour":21,"failure_rate":0.1919,"mean_wait":18.45},{"hour":22,"failure_rate":0.3637,"mean_wait":27.56},{"hour":23,"failure_rate":0.3424,"mean_wait":25.98}]},{"group":"shift_worker","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.97,"mean_wait":42.83},{"hour":1,"failure_rate":0.97,"mean_wait":42.56},{"hour":2,"failure_rate":0.97,"mean_wait":41.27},{"hour":3,"failure_rate":0.97,"mean_wait":43.09},{"hour":4,"failure_rate":0.97,"mean_wait":41.04},{"hour":5,"failure_rate":0.7475,"mean_wait":29.63},{"hour":6,"failure_rate":0.3137,"mean_wait":20.03},{"hour":7,"failure_rate":0.3367,"mean_wait":19.67},{"hour":8,"failure_rate":0.3401,"mean_wait":20.89},{"hour":9,"failure_rate":0.3349,"mean_wait":20.92},{"hour":10,"failure_rate":0.2881,"mean_wait":19.77},{"hour":11,"failure_rate":0.275,"mean_wait":19.24},{"hour":12,"failure_rate":0.2473,"mean_wait":17.17},{"hour":13,"failure_rate":0.2544,"mean_wait":18.54},{"hour":14,"failure_rate":0.2663,"mean_wait":18.8},{"hour":15,"failure_rate":0.2702,"mean_wait":19.42},{"hour":16,"failure_rate":0.2985,"mean_wait":19.01},{"hour":17,"failure_rate":0.2899,"mean_wait":18.61},{"hour":18,"failure_rate":0.3182,"mean_wait":18.53},{"hour":19,"failure_rate":0.2873,"mean_wait":17.87},{"hour":20,"failure_rate":0.4771,"mean_wait":23.03},{"hour":21,"failure_rate":0.4679,"mean_wait":23.16},{"hour":22,"failure_rate":0.8505,"mean_wait":32.89},{"hour":23,"failure_rate":0.8567,"mean_wait":31.08}]},{"group":"shift_worker","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.97,"mean_wait":58.03},{"hour":1,"failure_rate":0.97,"mean_wait":54.3},{"hour":2,"failure_rate":0.97,"mean_wait":54.27},{"hour":3,"failure_rate":0.97,"mean_wait":58.75},{"hour":4,"failure_rate":0.97,"mean_wait":58.76},{"hour":5,"failure_rate":0.97,"mean_wait":37.48},{"hour":6,"failure_rate":0.4776,"mean_wait":23.24},{"hour":7,"failure_rate":0.4916,"mean_wait":24.8},{"hour":8,"failure_rate":0.5103,"mean_wait":24.33},{"hour":9,"failure_rate":0.4217,"mean_wait":22.36},{"hour":10,"failure_rate":0.3713,"mean_wait":20.86},{"hour":11,"failure_rate":0.3306,"mean_wait":20.87},{"hour":12,"failure_rate":0.2987,"mean_wait":19.79},{"hour":13,"failure_rate":0.3089,"mean_wait":18.77},{"hour":14,"failure_rate":0.3265,"mean_wait":19.51},{"hour":15,"failure_rate":0.3629,"mean_wait":20.23},{"hour":16,"failure_rate":0.3596,"mean_wait":20.56},{"hour":17,"failure_rate":0.4003,"mean_wait":20.36},{"hour":18,"failure_rate":0.3829,"mean_wait":21.54},{"hour":19,"failure_rate":0.3562,"mean_wait":20.16},{"hour":20,"failure_rate":0.5647,"mean_wait":26.8},{"hour":21,"failure_rate":0.5803,"mean_wait":26.82},{"hour":22,"failure_rate":0.97,"mean_wait":35.81},{"hour":23,"failure_rate":0.97,"mean_wait":37.02}]},{"group":"retired","day_type":"weekday","hours":[{"hour":0,"failure_rate":0.3999,"mean_wait":27.5},{"hour":1,"failure_rate":0.3714,"mean_wait":26.13},{"hour":2,"failure_rate":0.3854,"mean_wait":27.99},{"hour":3,"failure_rate":0.3769,"mean_wait":26.36},{"hour":4,"failure_rate":0.3897,"mean_wait":27.32},{"hour":5,"failure_rate":0.2309,"mean_wait":19.7},{"hour":6,"failure_rate":0.0941,"mean_wait":12.39},{"hour":7,"failure_rate":0.0998,"mean_wait":13.46},{"hour":8,"failure_rate":0.1119,"mean_wait":12.68},{"hour":9,"failure_rate":0.1034,"mean_wait":12.38},{"hour":10,"failure_rate":0.0981,"mean_wait":12.83},{"hour":11,"failure_rate":0.0816,"mean_wait":12.23},{"hour":12,"failure_rate":0.0768,"mean_wait":12.12},{"hour":13,"failure_rate":0.071,"mean_wait":11.65},{"hour":14,"failure_rate":0.0857,"mean_wait":11.69},{"hour":15,"failure_rate":0.0873,"mean_wait":12.53},{"hour":16,"failure_rate":0.0858,"mean_wait":12.88},{"hour":17,"failure_rate":0.0954,"mean_wait":12.67},{"hour":18,"failure_rate":0.0902,"mean_wait":12.45},{"hour":19,"failure_rate":0.0811,"mean_wait":11.59},{"hour":20,"failure_rate":0.1524,"mean_wait":15.23},{"hour":21,"failure_rate":0.1516,"mean_wait":15.29},{"hour":22,"failure_rate":0.2496,"mean_wait":20.39},{"hour":23,"failure_rate":0.2671,"mean_wait":21.45}]},{"group":"retired","day_type":"weekend","hours":[{"hour":0,"failure_rate":0.564,"mean_wait":36.05},{"hour":1,"failure_rate":0.5549,"mean_wait":38.35},{"hour":2,"failure_rate":0.5479,"mean_wait":35.08},{"hour":3,"failure_rate":0.5795,"mean_wait":36.2},{"hour":4,"failure_rate":0.6019,"mean_wait":38.16},{"hour":5,"failure_rate":0.3366,"mean_wait":25.12},{"hour":6,"failure_rate":0.1315,"mean_wait":14.91},{"hour":7,"failure_rate":0.1555,"mean_wait":15.26},{"hour":8,"failure_rate":0.1753,"mean_wait":16.33},{"hour":9,"failure_rate":0.1334,"mean_wait":14.01},{"hour":10,"failure_rate":0.1136,"mean_wait":14.03},{"hour":11,"failure_rate":0.1131,"mean_wait":13.49},{"hour":12,"failure_rate":0.095,"mean_wait":13.13},{"hour":13,"failure_rate":0.0969,"mean_wait":13.13},{"hour":14,"failure_rate":0.0934,"mean_wait":12.97},{"hour":15,"failure_rate":0.1159,"mean_wait":12.86},{"hour":16,"failure_rate":0.1176,"mean_wait":13.54},{"hour":17,"failure_rate":0.1293,"mean_wait":13.59},{"hour":18,"failure_rate":0.1113,"mean_wait":14.15},{"hour":19,"failure_rate":0.1142,"mean_wait":12.78},{"hour":20,"failure_rate":0.188,"mean_wait":16.74},{"hour":21,"failure_rate":0.1903,"mean_wait":16.1},{"hour":22,"failure_rate":0.3239,"mean_wait":23.5},{"hour":23,"failure_rate":0.3316,"mean_wait":23.76}]}]}
+{
+  "city_slug": "ann_arbor",
+  "day_types": [
+    "weekday",
+    "weekend"
+  ],
+  "fake": true,
+  "note": "weekday = mon-fri, weekend = sat; hour is the desired departure hour; pooled over replicates",
+  "scenario": "baseline",
+  "schema_version": "0.1",
+  "series": [
+    {
+      "day_type": "weekday",
+      "group": "undergraduate",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0292,
+          "hour": 7,
+          "mean_wait": 4.08,
+          "n_trips": 7442,
+          "n_wait_samples": 150
+        },
+        {
+          "failure_rate": 0.0271,
+          "hour": 8,
+          "mean_wait": 4.65,
+          "n_trips": 15185,
+          "n_wait_samples": 253
+        },
+        {
+          "failure_rate": 0.027,
+          "hour": 9,
+          "mean_wait": 4.13,
+          "n_trips": 15196,
+          "n_wait_samples": 244
+        },
+        {
+          "failure_rate": 0.0276,
+          "hour": 10,
+          "mean_wait": 4.37,
+          "n_trips": 15617,
+          "n_wait_samples": 315
+        },
+        {
+          "failure_rate": 0.0255,
+          "hour": 11,
+          "mean_wait": 4.5,
+          "n_trips": 18347,
+          "n_wait_samples": 314
+        },
+        {
+          "failure_rate": 0.0309,
+          "hour": 12,
+          "mean_wait": 4.09,
+          "n_trips": 21437,
+          "n_wait_samples": 396
+        },
+        {
+          "failure_rate": 0.0261,
+          "hour": 13,
+          "mean_wait": 4.44,
+          "n_trips": 24275,
+          "n_wait_samples": 445
+        },
+        {
+          "failure_rate": 0.0289,
+          "hour": 14,
+          "mean_wait": 5.71,
+          "n_trips": 13373,
+          "n_wait_samples": 214
+        },
+        {
+          "failure_rate": 0.0271,
+          "hour": 15,
+          "mean_wait": 5.32,
+          "n_trips": 14781,
+          "n_wait_samples": 253
+        },
+        {
+          "failure_rate": 0.0248,
+          "hour": 16,
+          "mean_wait": 5.17,
+          "n_trips": 15356,
+          "n_wait_samples": 277
+        },
+        {
+          "failure_rate": 0.0255,
+          "hour": 17,
+          "mean_wait": 4.32,
+          "n_trips": 13911,
+          "n_wait_samples": 260
+        },
+        {
+          "failure_rate": 0.0262,
+          "hour": 18,
+          "mean_wait": 5.26,
+          "n_trips": 10687,
+          "n_wait_samples": 215
+        },
+        {
+          "failure_rate": 0.0285,
+          "hour": 19,
+          "mean_wait": 5.17,
+          "n_trips": 7993,
+          "n_wait_samples": 147
+        },
+        {
+          "failure_rate": 0.0307,
+          "hour": 20,
+          "mean_wait": 4.7,
+          "n_trips": 4886,
+          "n_wait_samples": 73
+        },
+        {
+          "failure_rate": 0.0228,
+          "hour": 21,
+          "mean_wait": 5.36,
+          "n_trips": 1928,
+          "n_wait_samples": 39
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 26,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "undergraduate",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 9,
+          "mean_wait": 7.2,
+          "n_trips": 517,
+          "n_wait_samples": 14
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 10,
+          "mean_wait": 5.07,
+          "n_trips": 3814,
+          "n_wait_samples": 70
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 11,
+          "mean_wait": 4.47,
+          "n_trips": 5839,
+          "n_wait_samples": 133
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 12,
+          "mean_wait": 4.99,
+          "n_trips": 5883,
+          "n_wait_samples": 98
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 13,
+          "mean_wait": 5.41,
+          "n_trips": 5914,
+          "n_wait_samples": 119
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 14,
+          "mean_wait": 4.16,
+          "n_trips": 5920,
+          "n_wait_samples": 106
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 15,
+          "mean_wait": 4.44,
+          "n_trips": 6000,
+          "n_wait_samples": 118
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 16,
+          "mean_wait": 5.43,
+          "n_trips": 6057,
+          "n_wait_samples": 113
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 17,
+          "mean_wait": 2.98,
+          "n_trips": 2869,
+          "n_wait_samples": 52
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 6.88,
+          "n_trips": 449,
+          "n_wait_samples": 10
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekday",
+      "group": "graduate",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0285,
+          "hour": 7,
+          "mean_wait": 5.17,
+          "n_trips": 3786,
+          "n_wait_samples": 66
+        },
+        {
+          "failure_rate": 0.0301,
+          "hour": 8,
+          "mean_wait": 6.03,
+          "n_trips": 7563,
+          "n_wait_samples": 150
+        },
+        {
+          "failure_rate": 0.029,
+          "hour": 9,
+          "mean_wait": 5.12,
+          "n_trips": 7599,
+          "n_wait_samples": 139
+        },
+        {
+          "failure_rate": 0.0308,
+          "hour": 10,
+          "mean_wait": 6.23,
+          "n_trips": 7814,
+          "n_wait_samples": 143
+        },
+        {
+          "failure_rate": 0.0287,
+          "hour": 11,
+          "mean_wait": 6.06,
+          "n_trips": 9183,
+          "n_wait_samples": 171
+        },
+        {
+          "failure_rate": 0.026,
+          "hour": 12,
+          "mean_wait": 6.51,
+          "n_trips": 10738,
+          "n_wait_samples": 209
+        },
+        {
+          "failure_rate": 0.0304,
+          "hour": 13,
+          "mean_wait": 5.11,
+          "n_trips": 12102,
+          "n_wait_samples": 192
+        },
+        {
+          "failure_rate": 0.0287,
+          "hour": 14,
+          "mean_wait": 8.07,
+          "n_trips": 6755,
+          "n_wait_samples": 116
+        },
+        {
+          "failure_rate": 0.0298,
+          "hour": 15,
+          "mean_wait": 7.35,
+          "n_trips": 7457,
+          "n_wait_samples": 133
+        },
+        {
+          "failure_rate": 0.0268,
+          "hour": 16,
+          "mean_wait": 7.55,
+          "n_trips": 7681,
+          "n_wait_samples": 134
+        },
+        {
+          "failure_rate": 0.0267,
+          "hour": 17,
+          "mean_wait": 6.62,
+          "n_trips": 6810,
+          "n_wait_samples": 161
+        },
+        {
+          "failure_rate": 0.026,
+          "hour": 18,
+          "mean_wait": 6.91,
+          "n_trips": 5430,
+          "n_wait_samples": 115
+        },
+        {
+          "failure_rate": 0.0271,
+          "hour": 19,
+          "mean_wait": 7.72,
+          "n_trips": 4027,
+          "n_wait_samples": 67
+        },
+        {
+          "failure_rate": 0.0317,
+          "hour": 20,
+          "mean_wait": 7.88,
+          "n_trips": 2432,
+          "n_wait_samples": 52
+        },
+        {
+          "failure_rate": 0.033,
+          "hour": 21,
+          "mean_wait": 6.25,
+          "n_trips": 938,
+          "n_wait_samples": 18
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 5,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "graduate",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 9,
+          "mean_wait": 11.83,
+          "n_trips": 229,
+          "n_wait_samples": 5
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 10,
+          "mean_wait": 8.8,
+          "n_trips": 1921,
+          "n_wait_samples": 39
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 11,
+          "mean_wait": 5.95,
+          "n_trips": 2850,
+          "n_wait_samples": 55
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 12,
+          "mean_wait": 6.48,
+          "n_trips": 2980,
+          "n_wait_samples": 56
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 13,
+          "mean_wait": 7.15,
+          "n_trips": 3034,
+          "n_wait_samples": 44
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 14,
+          "mean_wait": 5.36,
+          "n_trips": 3017,
+          "n_wait_samples": 54
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 15,
+          "mean_wait": 5.08,
+          "n_trips": 2951,
+          "n_wait_samples": 53
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 16,
+          "mean_wait": 8.25,
+          "n_trips": 3033,
+          "n_wait_samples": 58
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 17,
+          "mean_wait": 7.82,
+          "n_trips": 1415,
+          "n_wait_samples": 18
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 3.47,
+          "n_trips": 220,
+          "n_wait_samples": 6
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekday",
+      "group": "university_staff",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 6.14,
+          "n_trips": 22985,
+          "n_wait_samples": 415
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 5.88,
+          "n_trips": 26890,
+          "n_wait_samples": 445
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 9,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 10,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 11,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 12,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 13,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 14,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 15,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 16,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 17,
+          "mean_wait": 5.98,
+          "n_trips": 46305,
+          "n_wait_samples": 890
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 8.03,
+          "n_trips": 3570,
+          "n_wait_samples": 25
+        },
+        {
+          "failure_rate": 0.0145,
+          "hour": 19,
+          "mean_wait": 3.78,
+          "n_trips": 4081,
+          "n_wait_samples": 62
+        },
+        {
+          "failure_rate": 0.0165,
+          "hour": 20,
+          "mean_wait": 5.33,
+          "n_trips": 12342,
+          "n_wait_samples": 237
+        },
+        {
+          "failure_rate": 0.0143,
+          "hour": 21,
+          "mean_wait": 4.6,
+          "n_trips": 7324,
+          "n_wait_samples": 123
+        },
+        {
+          "failure_rate": 0.0104,
+          "hour": 22,
+          "mean_wait": 5.54,
+          "n_trips": 1255,
+          "n_wait_samples": 26
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "university_staff",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0192,
+          "hour": 9,
+          "mean_wait": 14.12,
+          "n_trips": 261,
+          "n_wait_samples": 7
+        },
+        {
+          "failure_rate": 0.0041,
+          "hour": 10,
+          "mean_wait": 6.19,
+          "n_trips": 734,
+          "n_wait_samples": 15
+        },
+        {
+          "failure_rate": 0.0144,
+          "hour": 11,
+          "mean_wait": 7.46,
+          "n_trips": 1041,
+          "n_wait_samples": 24
+        },
+        {
+          "failure_rate": 0.0176,
+          "hour": 12,
+          "mean_wait": 4.29,
+          "n_trips": 964,
+          "n_wait_samples": 13
+        },
+        {
+          "failure_rate": 0.0108,
+          "hour": 13,
+          "mean_wait": 3.1,
+          "n_trips": 925,
+          "n_wait_samples": 11
+        },
+        {
+          "failure_rate": 0.0113,
+          "hour": 14,
+          "mean_wait": 2.93,
+          "n_trips": 796,
+          "n_wait_samples": 11
+        },
+        {
+          "failure_rate": 0.0067,
+          "hour": 15,
+          "mean_wait": 4.95,
+          "n_trips": 750,
+          "n_wait_samples": 14
+        },
+        {
+          "failure_rate": 0.0148,
+          "hour": 16,
+          "mean_wait": 5.89,
+          "n_trips": 741,
+          "n_wait_samples": 18
+        },
+        {
+          "failure_rate": 0.0177,
+          "hour": 17,
+          "mean_wait": 7.76,
+          "n_trips": 339,
+          "n_wait_samples": 8
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 2.79,
+          "n_trips": 49,
+          "n_wait_samples": 2
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekday",
+      "group": "resident_worker",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 7.23,
+          "n_trips": 68525,
+          "n_wait_samples": 1220
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 8.54,
+          "n_trips": 80470,
+          "n_wait_samples": 1560
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 9,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 10,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 11,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 12,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 13,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 14,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 15,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 16,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 17,
+          "mean_wait": 8.24,
+          "n_trips": 137085,
+          "n_wait_samples": 2550
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 8.84,
+          "n_trips": 11910,
+          "n_wait_samples": 260
+        },
+        {
+          "failure_rate": 0.0155,
+          "hour": 19,
+          "mean_wait": 3.31,
+          "n_trips": 12216,
+          "n_wait_samples": 219
+        },
+        {
+          "failure_rate": 0.0145,
+          "hour": 20,
+          "mean_wait": 5.07,
+          "n_trips": 36787,
+          "n_wait_samples": 675
+        },
+        {
+          "failure_rate": 0.013,
+          "hour": 21,
+          "mean_wait": 5.56,
+          "n_trips": 21647,
+          "n_wait_samples": 429
+        },
+        {
+          "failure_rate": 0.0154,
+          "hour": 22,
+          "mean_wait": 4.97,
+          "n_trips": 3704,
+          "n_wait_samples": 55
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "resident_worker",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0092,
+          "hour": 9,
+          "mean_wait": 3.29,
+          "n_trips": 759,
+          "n_wait_samples": 11
+        },
+        {
+          "failure_rate": 0.0121,
+          "hour": 10,
+          "mean_wait": 6.2,
+          "n_trips": 2061,
+          "n_wait_samples": 44
+        },
+        {
+          "failure_rate": 0.0117,
+          "hour": 11,
+          "mean_wait": 7.78,
+          "n_trips": 3081,
+          "n_wait_samples": 57
+        },
+        {
+          "failure_rate": 0.0132,
+          "hour": 12,
+          "mean_wait": 5.47,
+          "n_trips": 2793,
+          "n_wait_samples": 58
+        },
+        {
+          "failure_rate": 0.0129,
+          "hour": 13,
+          "mean_wait": 7.01,
+          "n_trips": 2722,
+          "n_wait_samples": 57
+        },
+        {
+          "failure_rate": 0.0136,
+          "hour": 14,
+          "mean_wait": 7.3,
+          "n_trips": 2419,
+          "n_wait_samples": 42
+        },
+        {
+          "failure_rate": 0.0122,
+          "hour": 15,
+          "mean_wait": 3.68,
+          "n_trips": 2221,
+          "n_wait_samples": 42
+        },
+        {
+          "failure_rate": 0.0171,
+          "hour": 16,
+          "mean_wait": 5.66,
+          "n_trips": 2284,
+          "n_wait_samples": 45
+        },
+        {
+          "failure_rate": 0.0143,
+          "hour": 17,
+          "mean_wait": 9.54,
+          "n_trips": 1122,
+          "n_wait_samples": 17
+        },
+        {
+          "failure_rate": 0.0057,
+          "hour": 18,
+          "mean_wait": 15.84,
+          "n_trips": 174,
+          "n_wait_samples": 5
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekday",
+      "group": "shift_worker",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0171,
+          "hour": 9,
+          "mean_wait": 9.28,
+          "n_trips": 55808,
+          "n_wait_samples": 1120
+        },
+        {
+          "failure_rate": 0.0175,
+          "hour": 10,
+          "mean_wait": 9.07,
+          "n_trips": 7501,
+          "n_wait_samples": 105
+        },
+        {
+          "failure_rate": 0.0092,
+          "hour": 11,
+          "mean_wait": 6.68,
+          "n_trips": 8789,
+          "n_wait_samples": 157
+        },
+        {
+          "failure_rate": 0.0118,
+          "hour": 12,
+          "mean_wait": 5.69,
+          "n_trips": 10845,
+          "n_wait_samples": 203
+        },
+        {
+          "failure_rate": 0.0115,
+          "hour": 13,
+          "mean_wait": 5.31,
+          "n_trips": 10903,
+          "n_wait_samples": 191
+        },
+        {
+          "failure_rate": 0.0096,
+          "hour": 14,
+          "mean_wait": 6.09,
+          "n_trips": 5126,
+          "n_wait_samples": 82
+        },
+        {
+          "failure_rate": 0.0033,
+          "hour": 15,
+          "mean_wait": 7.86,
+          "n_trips": 912,
+          "n_wait_samples": 21
+        },
+        {
+          "failure_rate": 0.0113,
+          "hour": 16,
+          "mean_wait": 7.76,
+          "n_trips": 69685,
+          "n_wait_samples": 1045
+        },
+        {
+          "failure_rate": 0.0129,
+          "hour": 17,
+          "mean_wait": 5.25,
+          "n_trips": 5795,
+          "n_wait_samples": 130
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "shift_worker",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0171,
+          "hour": 9,
+          "mean_wait": 8.23,
+          "n_trips": 13952,
+          "n_wait_samples": 237
+        },
+        {
+          "failure_rate": 0.021,
+          "hour": 10,
+          "mean_wait": 14.63,
+          "n_trips": 1144,
+          "n_wait_samples": 40
+        },
+        {
+          "failure_rate": 0.0132,
+          "hour": 11,
+          "mean_wait": 9.72,
+          "n_trips": 911,
+          "n_wait_samples": 15
+        },
+        {
+          "failure_rate": 0.0135,
+          "hour": 12,
+          "mean_wait": 9.34,
+          "n_trips": 1260,
+          "n_wait_samples": 16
+        },
+        {
+          "failure_rate": 0.0138,
+          "hour": 13,
+          "mean_wait": 4.74,
+          "n_trips": 1373,
+          "n_wait_samples": 26
+        },
+        {
+          "failure_rate": 0.0098,
+          "hour": 14,
+          "mean_wait": 5.12,
+          "n_trips": 1331,
+          "n_wait_samples": 30
+        },
+        {
+          "failure_rate": 0.0155,
+          "hour": 15,
+          "mean_wait": 3.8,
+          "n_trips": 1227,
+          "n_wait_samples": 20
+        },
+        {
+          "failure_rate": 0.0188,
+          "hour": 16,
+          "mean_wait": 8.7,
+          "n_trips": 1221,
+          "n_wait_samples": 21
+        },
+        {
+          "failure_rate": 0.0104,
+          "hour": 17,
+          "mean_wait": 5.66,
+          "n_trips": 577,
+          "n_wait_samples": 9
+        },
+        {
+          "failure_rate": 0.0116,
+          "hour": 18,
+          "mean_wait": 0.0,
+          "n_trips": 86,
+          "n_wait_samples": 1
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekday",
+      "group": "retired",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0094,
+          "hour": 9,
+          "mean_wait": 6.31,
+          "n_trips": 3498,
+          "n_wait_samples": 56
+        },
+        {
+          "failure_rate": 0.008,
+          "hour": 10,
+          "mean_wait": 5.77,
+          "n_trips": 5250,
+          "n_wait_samples": 101
+        },
+        {
+          "failure_rate": 0.0101,
+          "hour": 11,
+          "mean_wait": 4.45,
+          "n_trips": 5661,
+          "n_wait_samples": 134
+        },
+        {
+          "failure_rate": 0.0101,
+          "hour": 12,
+          "mean_wait": 5.86,
+          "n_trips": 5746,
+          "n_wait_samples": 112
+        },
+        {
+          "failure_rate": 0.0097,
+          "hour": 13,
+          "mean_wait": 6.38,
+          "n_trips": 5867,
+          "n_wait_samples": 110
+        },
+        {
+          "failure_rate": 0.011,
+          "hour": 14,
+          "mean_wait": 5.3,
+          "n_trips": 5997,
+          "n_wait_samples": 116
+        },
+        {
+          "failure_rate": 0.0112,
+          "hour": 15,
+          "mean_wait": 5.85,
+          "n_trips": 5912,
+          "n_wait_samples": 108
+        },
+        {
+          "failure_rate": 0.0105,
+          "hour": 16,
+          "mean_wait": 7.15,
+          "n_trips": 2856,
+          "n_wait_samples": 58
+        },
+        {
+          "failure_rate": 0.0148,
+          "hour": 17,
+          "mean_wait": 5.21,
+          "n_trips": 541,
+          "n_wait_samples": 16
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 18,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    },
+    {
+      "day_type": "weekend",
+      "group": "retired",
+      "hours": [
+        {
+          "failure_rate": 0.0,
+          "hour": 0,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 1,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 2,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 3,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 4,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 5,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 6,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 7,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 8,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0075,
+          "hour": 9,
+          "mean_wait": 10.77,
+          "n_trips": 133,
+          "n_wait_samples": 1
+        },
+        {
+          "failure_rate": 0.0108,
+          "hour": 10,
+          "mean_wait": 6.06,
+          "n_trips": 833,
+          "n_wait_samples": 12
+        },
+        {
+          "failure_rate": 0.0105,
+          "hour": 11,
+          "mean_wait": 7.96,
+          "n_trips": 1146,
+          "n_wait_samples": 21
+        },
+        {
+          "failure_rate": 0.012,
+          "hour": 12,
+          "mean_wait": 8.13,
+          "n_trips": 1169,
+          "n_wait_samples": 27
+        },
+        {
+          "failure_rate": 0.0087,
+          "hour": 13,
+          "mean_wait": 6.63,
+          "n_trips": 1145,
+          "n_wait_samples": 30
+        },
+        {
+          "failure_rate": 0.0107,
+          "hour": 14,
+          "mean_wait": 6.08,
+          "n_trips": 1119,
+          "n_wait_samples": 20
+        },
+        {
+          "failure_rate": 0.0055,
+          "hour": 15,
+          "mean_wait": 7.86,
+          "n_trips": 1082,
+          "n_wait_samples": 15
+        },
+        {
+          "failure_rate": 0.0108,
+          "hour": 16,
+          "mean_wait": 5.41,
+          "n_trips": 1115,
+          "n_wait_samples": 23
+        },
+        {
+          "failure_rate": 0.0056,
+          "hour": 17,
+          "mean_wait": 1.71,
+          "n_trips": 533,
+          "n_wait_samples": 5
+        },
+        {
+          "failure_rate": 0.0115,
+          "hour": 18,
+          "mean_wait": 16.21,
+          "n_trips": 87,
+          "n_wait_samples": 2
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 19,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 20,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 21,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 22,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        },
+        {
+          "failure_rate": 0.0,
+          "hour": 23,
+          "mean_wait": 0.0,
+          "n_trips": 0,
+          "n_wait_samples": 0
+        }
+      ]
+    }
+  ]
+}
