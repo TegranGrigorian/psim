@@ -111,6 +111,10 @@ University jobs after this: 50,056 (the moved jobs plus healthcare and other job
 - **First-year housing requirement or share living on campus.** One aggregator claims over 97%; no official source was retrieved. Not used.
 - **Fall 2026 enrollment.** The latest OBP table is Fall 2025; the semester simulated is Fall 2026.
 
-## 6. Use as validation, not just input
+## 6. Bus delays (the reliability model)
+
+Source: TheRide, [Q1 Service Report](https://www.theride.org/sites/default/files/2026-04/Q1%20Service%20Report.pdf), operations report for October to December 2025 (read in full, page 1). Fixed-route **on-time performance was 82%** in Q1 FY2026 (82%, 87%, 87% and 81% in the four FY2025 quarters), against a benchmark of 80%. The same report's "95% target" and "30-minute window" figures are for **paratransit (ARide)**, a different service, and must not be used for buses. The report page does not define on-time; TheRide's earlier reports define it as a bus leaving a timepoint 0 to 5 minutes after the posted time (not read directly here, so the model treats 5 minutes as the window and says so). U-M buses publish no on-time figure; the model assumes the same distribution for them. I found no public GTFS-realtime feed for TheRide. See SCHEMA.md 4.1 for how the number is used and what it cannot pin down.
+
+## 7. Use as validation, not just input
 
 The ACS commute figures are an independent check on the simulation. For work and class trips in the baseline run, compare the simulated share that walks and the share that takes transit with the ACS (13.1% walk, 7.3% transit of all commuters, 26.2% work from home and so not modeled). A large mismatch means the inputs, not the routing, need fixing. A simulated population is allowed to differ from the survey, but the difference must be explained.

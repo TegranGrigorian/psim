@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.6 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.7 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -203,10 +203,11 @@ One row per trip a persona wants to make in a week. This is the input to the rou
 | `dest_lat`, `dest_lon` | float | |
 | `dest_id` | string | FK → housing / workplace / campus / `poi_*` id |
 | `required` | bool | `true` for work/class (a failure counts as a missed obligation) |
+| `due_time` | `HH:MM` | when the class or shift starts; only for required trips (empty otherwise). The engine plans the departure from it; `depart_time` is then only a nominal departure. |
 
-`depart_time` is a *desired departure*, not an arrival target (the engine finds the itinerary). v1 routine, weekdays only (placeholder assumptions, refine with fieldwork): `standard_day` workers leave 07:30–08:30 and return 17:00–18:00, with one fixed time per persona per direction; `night` workers leave 16:00–17:00 and return 09:00–10:00 on the **next calendar day** (a Friday night shift returns on Saturday); students leave for class at a random time 07:30–14:00 each day and return 3–8 hours later (no later than 22:00). `retired` personas have no anchor and therefore make only discretionary trips. Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
+`depart_time` is a *desired departure* (the engine finds the itinerary); for required trips it is only a nominal one, because the rider plans backwards from `due_time` (see 4.1). v1 routine, weekdays only (placeholder assumptions, refine with fieldwork): `standard_day` workers start at 09:00, leave nominally 07:30–08:30 and return 17:00–18:00, with one fixed time per persona per direction; `night` workers start at 17:00, leave nominally 15:30–16:30 and return 09:00–10:00 on the **next calendar day** (a Friday night shift returns on Saturday); students have one class a day starting on the hour, 08:00–15:00 (a different slot each day), leave nominally 30 minutes before it, and return 3–8 hours after it starts (no later than 22:00). `retired` personas have no anchor and therefore make only discretionary trips. Return trips are explicit rows (`purpose = return_home`), not implied, so evening and late-night service matter.
 
-Discretionary trips (v0.3): **every** persona, including `retired`, makes 1–2 `shopping` round trips a week (home → POI → home) and, with some probability (8% per week; 15% for `retired`), one `medical` round trip. Both are `required = false`. The POI is drawn weighted by `weight / (1 + distance_km)^2`, so people mostly go to nearby places and bigger places pull harder. Days are Mon–Fri plus Saturday, in windows chosen so a trip never collides with work or class: students shop and see clinics on Saturday only; day workers shop on weekday evenings (depart 19:30–21:00) or Saturday, and see clinics on Saturday morning; night workers use weekday late mornings (shopping 10:30–14:00, medical 10:30–12:00) or Saturday from 11:00; retired use weekday daytime or Saturday. Time at the destination is 20–90 min (shopping) or 60–180 min (medical). If a persona has a medical and a shopping trip on one day, shopping starts after they are home again. `social` is reserved. These numbers are placeholder assumptions.
+Discretionary trips (v0.3): **every** persona, including `retired`, makes 1–2 `shopping` round trips a week (home → POI → home) and, with some probability (8% per week; 15% for `retired`), one `medical` round trip. Both are `required = false`. The POI is drawn weighted by `weight / (1 + distance_km)^2`, so people mostly go to nearby places and bigger places pull harder. Days are Mon–Fri plus Saturday, in windows chosen so a trip never collides with work or class: students shop and see clinics on Saturday only; day workers shop on weekday evenings (depart 19:30–21:00) or Saturday, and see clinics on Saturday morning; night workers use weekday late mornings (shopping 10:30–13:30, medical 10:30–12:00) or Saturday from 11:00; retired use weekday daytime or Saturday. Time at the destination is 20–90 min (shopping) or 60–180 min (medical). If a persona has a medical and a shopping trip on one day, shopping starts after they are home again. `social` is reserved. These numbers are placeholder assumptions.
 
 ---
 
@@ -229,7 +230,11 @@ One row per trip per run. Parquet, snappy compression. Written by `psim-engine r
 | `walk_minutes` | float | access + egress + transfer walking; null unless `breakdown_sampled` |
 | `transfers` | int | null unless `breakdown_sampled` |
 | `breakdown_total_minutes` | float | the total of the option the breakdown describes (`wait + in_vehicle + walk` equals it); null unless `breakdown_sampled`. Close to `total_minutes` but not equal, see below. |
-| `breakdown_sampled` | bool | `true` if this trip's query was in the random sample routed in detail |
+| `breakdown_sampled` | bool | `true` if this trip's query was in the random sample routed in detail and has a breakdown |
+| `planned_departure` | `HH:MM` | required trips in the sample: when the rider leaves, planned backwards from `due_time` |
+| `scheduled_minutes` | float | the timetable travel time of that plan, with no delays |
+| `p_on_time` | float | probability of arriving at least `arrive_margin_minutes` before `due_time` once bus delays are applied (delay model below). 0 if no itinerary can arrive in time. Null outside the sample. |
+| `delay_p95_minutes` | float | the delay that 95% of simulated trips stay under: the extra minutes to allow beyond the timetable |
 | `routing_percentile` | int | percentile of `total_minutes` (50) |
 | `failure_reason` | enum | `none` or `no_route`. r5py does not say why no route was found, so every failure is `no_route`; the finer reasons (`no_service_at_time`, `walk_limit`, `time_limit`, `origin_unreachable`, `dest_unreachable`) are reserved. |
 
@@ -237,6 +242,15 @@ One row per trip per run. Parquet, snappy compression. Written by `psim-engine r
 
 1. *Every query:* `total_minutes` and `completed` come from r5py's `TravelTimeMatrix` (fast), run twice, transit+walk and walk only, to set `walk_only`.
 2. *A seeded random sample of queries* (`--breakdown-sample`, default 100; seed = the run's seed): r5py's `DetailedItineraries` (about 1.3 s per query, so it cannot cover every trip). It returns many options, with repeats, including paths no traveler would take, so options are not averaged. Instead the single option whose total is closest to the matrix total supplies the components, and `breakdown_total_minutes` records its own total so the gap is visible.
+
+**Planning and delays (required trips in the sample).** The rider plans like someone with a trip planner: leave as late as the timetable allows and still arrive `arrive_margin_minutes` (5) before `due_time` ("arrive-by": the engine searches departures with a one-minute window, because r5py only routes forward). Then a delay model asks how often that plan fails. It is configured in `config.json`:
+
+```json
+"reliability": { "model": "exponential_lateness", "on_time_share": 0.82, "on_time_window_minutes": 5,
+                 "arrive_margin_minutes": 5, "target_reliability": 0.95, "draws": 1000, "source": "..." }
+```
+
+Each bus is late by L minutes (never early), L exponentially distributed with the rate that makes a share `on_time_share` of departures fall within `on_time_window_minutes` of the schedule: the way TheRide reports on-time performance (82% in Q1 FY2026, see DATA_SOURCES.md). A rider boards each bus at its actual time; if they reach a transfer after the planned bus has left they wait for the **next scheduled departure of that route at that stop** (read from the GTFS timetable) plus a fresh lateness draw. `draws` simulated trips per planned trip give `p_on_time` and `delay_p95_minutes`; the simulation is seeded from the trip's content, so it does not depend on worker order. The agency figure fixes only one point of the lateness distribution: the shape below 5 minutes and the tail above are assumptions (early departures, which also cause missed buses, are ignored, and every route and hour shares one distribution), so the results are "given this delay model", not measurements. Measuring real delays (GTFS-realtime history or ride-alongs) is what would replace it.
 
 Analyses of wait, in-vehicle, walk and transfers use only `breakdown_sampled` rows and should report the sample size. Analyses of total time and failure use all rows.
 
@@ -286,7 +300,7 @@ Aggregated over the replicates. One entry per (dimension, value).
 
 - `dimension` ∈ `group`, `tenure`, `neighborhood`, `shift_pattern`, `age_band`, `income_band`.
 - `n_personas_mean`: mean number of personas with that value per replicate.
-- `on_time_rate` (proposed by the site: share of required trips arriving at least 5 minutes before they start) is **not written**: trips carry a desired departure, not a start time, so it cannot be computed yet. See the open questions.
+- Extra metrics, null when a group has no data: `required_failure_rate`; and, from required trips that went through the planning and delay model, `on_time_rate` (mean `p_on_time`, the share of the time a rider who plans by the timetable arrives at least 5 minutes before the start), `delay_buffer_minutes` (mean `delay_p95_minutes`), `planned_minutes` (mean timetable travel time of the plan) and `allow_minutes` (their sum: how long a rider has to allow to be on time 95% of the time). These come from the engine's detailed sample, so they are estimates from a sample, with the interval across replicates.
 - Numbers above are illustrative placeholders, not results.
 
 ### 5.2 `time_of_day.json`
@@ -318,5 +332,6 @@ Written by `psim-tools analyze --scenario <after> --compare <before>` into the *
 - Source for housing locations: Washtenaw County parcels vs. OSM buildings vs. Census block centroids with unit counts. Decision depends on what's downloadable and how clean it is. Public sources only (no scraping of listing sites, which prohibit it in their terms). Candidates: OSM extract (also needed for routing), Census ACS tract tables, Census LEHD (LODES) for workplace counts, Washtenaw County open parcel data, U-M published enrollment and housing figures.
 - ~~Whether U-M GTFS exists publicly~~: it does (https://webapps.fo.umich.edu/transit_uploads/google_transit.zip, valid 2026-08-23 to 2027-01-02). Record the download date and hash with the results.
 - Replace sample `pois.csv` with OSM shopping and medical amenities.
-- `on_time_rate`: needs a start time for required trips (class or shift start) so that "arrives 5 minutes early" is defined. Options: add a `due_time` column to `trips.csv` (generate would then choose the departure from it), or drop the metric from the site.
+- The delay model rests on one published number (TheRide's 82% on-time performance). Replace it with measured delays: GTFS-realtime history if TheRide publishes a feed (not found), or the ride-along observations. U-M's own buses publish no on-time figure.
+- Class start times are placeholders (every hour, 08:00–15:00); U-M's real schedule would replace them.
 - Whether results should record `routing_percentile` per trip or just once per run.
