@@ -26,5 +26,51 @@
   "osm_clipped": {
     "file": "raw/osm.pbf",
     "derived_from": "raw/michigan-latest.osm.pbf"
+  },
+  "census_pl_2020": {
+    "url": "https://www2.census.gov/programs-surveys/decennial/2020/data/01-Redistricting_File--PL_94-171/Michigan/mi2020.pl.zip",
+    "file": "raw/census/mi2020.pl.zip",
+    "bytes": 39966651,
+    "sha256": "971bd53abeb1d905bb9b09bfe4dc1afe8514a916f24d285b289e0f66ec5cfb62",
+    "last_modified": null,
+    "recorded_at": "2026-10-26T00:29:54+00:00"
+  },
+  "lodes_wac_2021": {
+    "url": "https://lehd.ces.census.gov/data/lodes/LODES8/mi/wac/mi_wac_S000_JT00_2021.csv.gz",
+    "file": "raw/census/mi_wac_S000_JT00_2021.csv.gz",
+    "bytes": 1522770,
+    "sha256": "f74fa8dd8b89ba67da78702ba4fc5a48de2c331f04307917785cee9fb8c9a71d",
+    "last_modified": null,
+    "recorded_at": "2026-10-26T00:29:55+00:00"
+  },
+  "osm_pois": {
+    "file": "raw/osm_pois.geojson",
+    "derived_from": "raw/osm.pbf",
+    "bytes": 209199,
+    "sha256": "17c37b933be1edf8293b1509f4e7aaf21e4f8022f695cab7f1e95de064001345"
+  },
+  "osm_buildings": {
+    "file": "raw/osm_buildings.geojson",
+    "derived_from": "raw/osm.pbf",
+    "bytes": 20921566,
+    "sha256": "b721ead547d7548e37a27d41e68253370666621a38efbb9e96021fe2eeff4abc"
+  },
+  "acs_tracts": {
+    "url": "https://api.census.gov/data/2023/acs/acs5 (Census API)",
+    "file": "raw/census/acs_tracts.json",
+    "bytes": 61301,
+    "sha256": "458b5b0d1079710a8f39498f435e4cf1caf4820a3ab2c5d68c49f1f83d0b0464",
+    "last_modified": null,
+    "recorded_at": "2026-10-26T00:31:51+00:00",
+    "acs": "2023 5-year"
+  },
+  "acs_place": {
+    "url": "https://api.census.gov/data/2023/acs/acs5 (Census API)",
+    "file": "raw/census/acs_place.json",
+    "bytes": 589,
+    "sha256": "8335bad9f91956c2d716899e1c12d9cbc6949b28f6a6e5ad50bf26399e387547",
+    "last_modified": null,
+    "recorded_at": "2026-10-26T00:31:53+00:00",
+    "acs": "2023 5-year"
   }
 }
