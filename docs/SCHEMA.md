@@ -1,7 +1,7 @@
 # SCHEMA.md — psim data contract
 
 This file is the contract between `psim-tools` (Rust), `psim-engine` (Python), and `psim-site` (TypeScript).
-If a column changes here, all three projects must change. Draft v0.4 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
+If a column changes here, all three projects must change. Draft v0.5 — expect revisions once real data is in hand (especially once `psim-engine` runs against real r5py output; `psim-tools` is built first, so treat the columns as provisional).
 
 ## Conventions
 
@@ -47,6 +47,7 @@ data/<city_slug>/
   "city_slug": "ann_arbor",
   "display_name": "Ann Arbor, MI",
   "timezone": "America/Detroit",
+  "sample_data": true,
   "bbox": [-83.85, 42.20, -83.62, 42.34],
   "population_size": 1000,
   "n_replicates": 100,
@@ -73,7 +74,7 @@ data/<city_slug>/
 }
 ```
 
-`represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday (Mon–Fri) covered by every GTFS feed used; the engine routes `mon`..`fri` trips on it. `weekend_service_date` must be a Saturday in the same period; the engine routes `sat` trips on it. `sun` trips are not generated in v1. `psim-tools` checks both weekdays (not GTFS coverage). Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
+`sample_data` (optional, default `false`) is `true` while the input tables are invented placeholders; `psim-tools analyze` then flags every summary `"fake": true`, which makes the site show its preview banner. Set it to `false` only when all inputs are real. `represented_population` is the real population the personas stand in for; each persona gets `weight = represented_population / population_size` (see 3.2). `base_seed` may be `null` (resolve from the CLI or the clock, see Conventions). `group_shares` values above are placeholders; they are derived from Census/enrollment data per city and must sum to 1.0 (see persona groups below). `service_date` must be a normal school-in-session weekday (Mon–Fri) covered by every GTFS feed used; the engine routes `mon`..`fri` trips on it. `weekend_service_date` must be a Saturday in the same period; the engine routes `sat` trips on it. `sun` trips are not generated in v1. `psim-tools` checks both weekdays (not GTFS coverage). Additional sensitivity dates (e.g. break week) may be run as separate scenarios.
 
 ---
 
@@ -239,13 +240,24 @@ Analyses of wait, in-vehicle, walk and transfers use only `breakdown_sampled` ro
 
 The site only ever reads these files; it never reads raw results. All files live in `summaries/<scenario>/` and are small JSON/GeoJSON (target: whole directory < 5 MB per city).
 
+### 5.0 How the summaries are computed
+
+`psim-tools analyze --city <city> --scenario <scenario> [--compare <earlier_scenario>]` reads `results/<scenario>_s*/trip_results.parquet` together with each run's `personas.csv` and `trips.csv`, reduces **each replicate** to one number per metric, then summarizes across replicates.
+
+- A trip counts toward every dimension value its persona has (group, tenure, neighborhood, shift pattern, age band, income band).
+- Per replicate: `total_minutes` is the mean over completed trips; `wait_minutes`, `in_vehicle_minutes`, `walk_minutes` and `transfers` are means over completed trips in the engine's detailed sample only (`breakdown_sampled`, see 4.1); `failure_rate` is the share of trips not completed; `required_failure_rate` is the same for work and class trips only (null for groups with none).
+- Across replicates: `mean` is the mean of the per-replicate values, and `ci_low`/`ci_high` are the **empirical 2.5th and 97.5th percentiles** of those values (linear interpolation; not a bootstrap). The interval reflects random persona draws only. It does not include uncertainty in the inputs.
+- A group entry whose metric has no data in any replicate (for example no detailed sample) is left out, never filled with zero, and `analyze` says so.
+- `summaries_index.json` (in the data folder, not the city folder) lists cities, scenarios and bounding boxes for the site, and carries `"fake": true` if any city has `sample_data`.
+
 ### 5.1 `group_metrics.json`
 
-Aggregated over the 100 replicates. One entry per (group dimension, group value).
+Aggregated over the replicates. One entry per (dimension, value).
 
 ```json
 {
   "schema_version": "0.1",
+  "fake": false,
   "city_slug": "ann_arbor",
   "scenario": "baseline",
   "n_replicates": 100,
@@ -255,10 +267,13 @@ Aggregated over the 100 replicates. One entry per (group dimension, group value)
       "value": "graduate",
       "n_personas_mean": 142.3,
       "metrics": {
-        "total_minutes":   { "mean": 41.2, "ci_low": 39.8, "ci_high": 42.7 },
-        "wait_minutes":    { "mean": 9.1,  "ci_low": 8.6,  "ci_high": 9.7 },
-        "transfers":       { "mean": 0.8,  "ci_low": 0.7,  "ci_high": 0.9 },
-        "failure_rate":    { "mean": 0.07, "ci_low": 0.05, "ci_high": 0.09 }
+        "total_minutes":      { "mean": 41.2, "ci_low": 39.8, "ci_high": 42.7 },
+        "wait_minutes":       { "mean": 9.1,  "ci_low": 8.6,  "ci_high": 9.7 },
+        "in_vehicle_minutes": { "mean": 12.0, "ci_low": 11.2, "ci_high": 12.9 },
+        "walk_minutes":       { "mean": 20.1, "ci_low": 19.0, "ci_high": 21.1 },
+        "transfers":          { "mean": 0.8,  "ci_low": 0.7,  "ci_high": 0.9 },
+        "failure_rate":       { "mean": 0.07, "ci_low": 0.05, "ci_high": 0.09 },
+        "required_failure_rate": { "mean": 0.06, "ci_low": 0.04, "ci_high": 0.08 }
       }
     }
   ]
@@ -266,24 +281,25 @@ Aggregated over the 100 replicates. One entry per (group dimension, group value)
 ```
 
 - `dimension` ∈ `group`, `tenure`, `neighborhood`, `shift_pattern`, `age_band`, `income_band`.
-- `ci_low`/`ci_high`: 95% interval across replicates (percentile bootstrap or empirical 2.5/97.5 percentiles; document which).
+- `n_personas_mean`: mean number of personas with that value per replicate.
+- `on_time_rate` (proposed by the site: share of required trips arriving at least 5 minutes before they start) is **not written**: trips carry a desired departure, not a start time, so it cannot be computed yet. See the open questions.
 - Numbers above are illustrative placeholders, not results.
 
 ### 5.2 `time_of_day.json`
 
-Failure rate and mean wait by group by hour of departure (0–23) and day type (`weekday`, `weekend`). Supports the "when they run" question.
+Series per group and day type (`weekday` = mon–fri, `weekend` = sat), with 24 hours each: `hour` (hour of *desired departure*), `failure_rate`, `mean_wait`, plus `n_trips` and `n_wait_samples`. Pooled over replicates, no intervals. Series with no trips are omitted. **Hours with no trips carry zeros and `n_trips: 0`; consumers must treat them as "no data", not as zero failures.** `mean_wait` uses the detailed sample, so `n_wait_samples` can be small. Supports the "when they run" question.
 
 ### 5.3 `neighborhood_map.geojson`
 
-One feature per neighborhood (polygon, or point if polygons are unavailable) with the same metrics as `group_metrics.json`'s `neighborhood` dimension in `properties`. Supports the "where routes go" question.
+One Polygon feature per neighborhood, with `neighborhood` (slug), `name`, `n_personas_mean` and the same metrics as `group_metrics.json`'s `neighborhood` dimension in `properties`. We have no official boundaries: each polygon is the convex hull of the neighborhood's housing points, padded about 170 m outward (a small circle if there are fewer than three points), and the file says so in `outline_note`. Supports the "where routes go" question.
 
 ### 5.4 `routes.geojson`
 
-Transit routes for the scenario, one LineString per route, with `route_id`, `route_short_name`, `agency`, and optionally `trips_per_weekday`. Supports before/after maps.
+One LineString per route in the scenario's GTFS feeds, with `route_id`, `route_short_name` (the long name if the short one is empty), `agency` (the feed folder name), `trips_per_weekday` (trips running on `service_date`) and, for scenarios other than `baseline`, `is_new` (the route does not exist in the baseline). The line is the shape used by most of the route's trips that day, thinned to points at least about 15 m apart. Supports before/after maps.
 
 ### 5.5 `comparison.json`
 
-Pairwise differences between scenarios (e.g. `baseline` vs `redesign_v1`) or between cities, same metric structure as 5.1 with `delta` fields. Written by `psim-tools analyze --compare`.
+Written by `psim-tools analyze --scenario <after> --compare <before>` into the *after* scenario's folder. Per (dimension, value) and metric: `before`, `after`, `delta` (after − before) and the interval of the delta. Replicates are **paired by seed**: replicate `i` of both scenarios shares a persona sample, so each per-replicate difference isolates the change in service; the interval is the empirical 2.5th and 97.5th percentile of those differences. Between cities, which share no persona sample, differences are not paired and must be reported as such.
 
 ---
 
@@ -298,4 +314,5 @@ Pairwise differences between scenarios (e.g. `baseline` vs `redesign_v1`) or bet
 - Source for housing locations: Washtenaw County parcels vs. OSM buildings vs. Census block centroids with unit counts. Decision depends on what's downloadable and how clean it is. Public sources only (no scraping of listing sites, which prohibit it in their terms). Candidates: OSM extract (also needed for routing), Census ACS tract tables, Census LEHD (LODES) for workplace counts, Washtenaw County open parcel data, U-M published enrollment and housing figures.
 - ~~Whether U-M GTFS exists publicly~~: it does (https://webapps.fo.umich.edu/transit_uploads/google_transit.zip, valid 2026-08-23 to 2027-01-02). Record the download date and hash with the results.
 - Replace sample `pois.csv` with OSM shopping and medical amenities.
+- `on_time_rate`: needs a start time for required trips (class or shift start) so that "arrives 5 minutes early" is defined. Options: add a `due_time` column to `trips.csv` (generate would then choose the departure from it), or drop the metric from the site.
 - Whether results should record `routing_percentile` per trip or just once per run.
